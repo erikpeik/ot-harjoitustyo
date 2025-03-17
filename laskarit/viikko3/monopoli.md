@@ -24,30 +24,6 @@
         +suoritaToiminto(Pelaaja) void
     }
 
-    class Aloitusruutu {
-        +suoritaToiminto(Pelaaja) void
-    }
-
-    class Vankila {
-        +suoritaToiminto(Pelaaja) void
-    }
-
-    class SattumaJaYhteismaa {
-        +suoritaToiminto(Pelaaja) void
-    }
-
-    class AsematJaLaitokset {
-        +suoritaToiminto(Pelaaja) void
-    }
-
-    class NormaalitKadut {
-        +suoritaToiminto(Pelaaja) void
-    }
-
-    class Kortti {
-        +suoritaToiminto(Pelaaja) void
-    }
-
     class NormaalitKadut {
         +omistaja: Pelaaja
         +talojenLkm: int (0-4)
@@ -56,5 +32,9 @@
 
     class Pelaaja {
         +raha: int
+    }
+
+    class Kortti {
+        +korttiToiminto(Pelaaja) void
     }
 ```
