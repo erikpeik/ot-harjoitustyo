@@ -1,44 +1,44 @@
 name: Lint with Pylint
 
 on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-    lint:
-        name: Run Pylint
-        runs-on: ubuntu-latest
+  lint:
+    name: Run Pylint
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repository
-                uses: actions/checkout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-            - name: Set up Python
-                uses: actions/setup-python@v5
-                with:
-                    python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-            - name: Change to minesweeper directory
-                run: cd /minesweeper
+      - name: Change to minesweeper directory
+        run: cd /minesweeper
 
-            - name: Install Poetry
-                run: |
-                    curl -sSL https://install.python-poetry.org | python3 -
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
 
-            - name: Load cached Poetry dependencies
-                uses: actions/cache@v4
-                with:
-                    path: ~/.cache/pypoetry
-                    key: poetry-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-                    restore-keys: |
-                        poetry-${{ runner.os }}-
+      - name: Load cached Poetry dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pypoetry
+          key: poetry-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            poetry-${{ runner.os }}-
 
-            - name: Install dependencies
-                run: poetry install --no-root
+      - name: Install dependencies
+        run: poetry install --no-root
 
-            - name: Run Pylint
-                run: poetry run pylint $(git ls-files '*.py')
+      - name: Run Pylint
+        run: poetry run pylint $(git ls-files '*.py')
