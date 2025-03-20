@@ -23,7 +23,7 @@ jobs:
           python-version: '3.10'
 
       - name: Change to minesweeper directory
-        run: cd /minesweeper
+        run: cd minesweeper
 
       - name: Install Poetry
         run: |
