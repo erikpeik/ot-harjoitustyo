@@ -11,7 +11,7 @@ class Tile:
     def get_tile(self, piece: Piece):
         x = 0
         y = 0
-        if piece.isBomb:
+        if piece.is_bomb:
             x = 2
             y = 0
         tile = self.sprite_sheet.subsurface(
