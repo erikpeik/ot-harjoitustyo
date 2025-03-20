@@ -6,7 +6,7 @@ class GameView:
     def __init__(self, game: Minesweeper, screen):
         self.game = game
         self.screen = screen
-        self.tile = Tile(game.board)
+        self.tile = Tile(game)
 
     def draw(self):
         top_left = (0, 0)

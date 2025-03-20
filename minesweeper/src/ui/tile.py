@@ -1,14 +1,14 @@
 import pygame as pg
 from logic.piece import Piece
-from logic.board import Board
+from logic.minesweeper import Minesweeper
 
 
 class Tile:
-    def __init__(self, board: Board):
+    def __init__(self, game: Minesweeper):
         self.sprite_sheet = pg.image.load("src/assets/tiles.png")
         self.__tile_size = 16
-        self.rendered_size = 30
-        self.__board = board
+        self.rendered_size = game.tile_size
+        self.__board = game.board
 
     def get_tile(self, piece: Piece):
         x = 0
@@ -20,15 +20,15 @@ class Tile:
             x = 2
             y = 0
         elif piece.clicked:
-            if adjacent_bombs > 0 and not piece.is_bomb:
-                x = adjacent_bombs - 1
-                y = 1
-            elif piece.is_bomb:
+            if piece.is_bomb:
                 x = 6
                 y = 0
-            else:
-                x = 0
+            elif adjacent_bombs > 0:
+                x = adjacent_bombs - 1
                 y = 1
+            else:
+                x = 1
+                y = 0
 
         tile = self.sprite_sheet.subsurface(
             pg.Rect(

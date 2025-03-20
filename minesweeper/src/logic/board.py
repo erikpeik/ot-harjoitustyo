@@ -22,10 +22,6 @@ class Board:
                 board[row][col] = Piece(True, (row, col))
                 mines_placed += 1
 
-        for row in board:
-            for piece in row:
-                print("X" if piece.is_bomb else "-", end=" ")
-            print()
         return board
 
     def get_board(self):
@@ -39,6 +35,7 @@ class Board:
                 if (
                     0 <= row + i < self.__size[0]
                     and 0 <= col + j < self.__size[1]
+                    and not (i == 0 and j == 0)
                     and self.__board[row + i][col + j].is_bomb
                 ):
                     adjacent_bombs += 1

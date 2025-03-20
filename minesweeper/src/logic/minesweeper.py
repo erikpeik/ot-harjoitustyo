@@ -2,7 +2,7 @@ from logic.board import Board
 
 
 class Minesweeper:
-    def __init__(self, size=(18, 9), mines=25, tile_size=30):
+    def __init__(self, size=(30, 16), mines=99, tile_size=32):
         self.size = size
         self.board = Board(size, mines)
         self.tile_size = tile_size
