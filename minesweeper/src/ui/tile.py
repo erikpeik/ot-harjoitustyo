@@ -16,12 +16,15 @@ class Tile:
 
         adjacent_bombs = self.__board.calculate_adjacent_bombs(piece)
 
-        if piece.clicked:
+        if piece.flagged:
+            x = 2
+            y = 0
+        elif piece.clicked:
             if adjacent_bombs > 0 and not piece.is_bomb:
                 x = adjacent_bombs - 1
                 y = 1
             elif piece.is_bomb:
-                x = 7
+                x = 6
                 y = 0
             else:
                 x = 0
@@ -41,11 +44,16 @@ class Tile:
         tile = self.get_tile(piece)
         screen.blit(tile, top_left)
 
-    def is_clicked(self, mouse_pos, top_left):
+    def is_clicked(self, mouse_pos: tuple, top_left: tuple):
         x, y = top_left
         mx, my = mouse_pos
         return x <= mx < x + self.rendered_size and y <= my < y + self.rendered_size
 
-    def handle_click(self, mouse_pos, top_left, piece: Piece):
+    def handle_click(
+        self, mouse_pos: tuple, top_left: tuple, piece: Piece, button: int
+    ):
         if self.is_clicked(mouse_pos, top_left):
-            piece.reveal()
+            if button == 1:
+                piece.reveal()
+            elif button == 3:
+                piece.flag_piece()

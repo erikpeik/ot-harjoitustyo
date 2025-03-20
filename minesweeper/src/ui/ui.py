@@ -29,7 +29,7 @@ class UI:
                     running = False
                 if event.type == pg.MOUSEBUTTONDOWN:
                     position = pg.mouse.get_pos()
-                    self.game_view.handle_click(position)
+                    self.game_view.handle_click(position, event.button)
             self.get_game_view(screen)
         pg.quit()
 

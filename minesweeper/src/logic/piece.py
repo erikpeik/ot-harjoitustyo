@@ -6,4 +6,9 @@ class Piece:
         self.location = location
 
     def reveal(self):
-        self.clicked = True
+        if not self.flagged:
+            self.clicked = True
+
+    def flag_piece(self):
+        if not self.clicked:
+            self.flagged = not self.flagged
