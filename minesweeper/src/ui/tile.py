@@ -49,12 +49,12 @@ class Tile:
         mx, my = mouse_pos
         return x <= mx < x + self.rendered_size and y <= my < y + self.rendered_size
 
-    def handle_click(
-        self, mouse_pos: tuple, top_left: tuple, piece: Piece, button: int
-    ):
+    def handle_click(self, mouse_pos: tuple, top_left: tuple, piece: Piece, action):
         if self.is_clicked(mouse_pos, top_left):
-            if button == 1:
+            if action == "reveal":
                 piece.reveal()
                 self.__board.reveal_empty_tiles(piece)
-            elif button == 3:
+            elif action == "flag":
                 piece.flag_piece()
+            elif action == "chord":
+                self.__board.chord_piece(piece)

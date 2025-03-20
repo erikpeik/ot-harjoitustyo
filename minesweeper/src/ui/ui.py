@@ -23,13 +23,34 @@ class UI:
         screen = pg.display.set_mode(self.game.board_size)
         running = True
 
+        left_mouse_down = False
+        right_mouse_down = False
+
         while running:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     running = False
                 if event.type == pg.MOUSEBUTTONDOWN:
                     position = pg.mouse.get_pos()
-                    self.game_view.handle_click(position, event.button)
+                    if event.button == 1:
+                        left_mouse_down = True
+                        if right_mouse_down:
+                            self.game_view.handle_click(position, "chord")
+                            right_mouse_down = False
+                        else:
+                            self.game_view.handle_click(position, "reveal")
+                    elif event.button == 3:
+                        right_mouse_down = True
+                        if left_mouse_down:
+                            self.game_view.handle_click(position, "chord")
+                            left_mouse_down = False
+                        else:
+                            self.game_view.handle_click(position, "flag")
+                if event.type == pg.MOUSEBUTTONUP:
+                    if event.button == 1:
+                        left_mouse_down = False
+                    elif event.button == 3:
+                        right_mouse_down = False
             self.get_game_view(screen)
         pg.quit()
 

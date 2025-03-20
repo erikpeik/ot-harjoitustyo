@@ -42,6 +42,9 @@ class Board:
         return adjacent_bombs
 
     def reveal_empty_tiles(self, piece: Piece):
+        if piece.is_bomb:
+            return
+
         if self.calculate_adjacent_bombs(piece) != 0:
             piece.reveal()
             return
@@ -52,6 +55,31 @@ class Board:
                 if (
                     0 <= row + i < self.__size[0]
                     and 0 <= col + j < self.__size[1]
+                    and not self.__board[row + i][col + j].clicked
+                ):
+                    self.__board[row + i][col + j].reveal()
+                    self.reveal_empty_tiles(self.__board[row + i][col + j])
+
+    def chord_piece(self, piece: Piece):
+        row, col = piece.location
+        flagged_adjacent = 0
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                if (
+                    0 <= row + i < self.__size[0]
+                    and 0 <= col + j < self.__size[1]
+                    and not (i == 0 and j == 0)
+                    and self.__board[row + i][col + j].flagged
+                ):
+                    flagged_adjacent += 1
+        if flagged_adjacent != self.calculate_adjacent_bombs(piece):
+            return
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                if (
+                    0 <= row + i < self.__size[0]
+                    and 0 <= col + j < self.__size[1]
+                    and not (i == 0 and j == 0)
                     and not self.__board[row + i][col + j].clicked
                 ):
                     self.__board[row + i][col + j].reveal()
