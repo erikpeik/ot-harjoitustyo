@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - 'minesweeper/**'
+      - 'minesweeper/src/**'
   pull_request:
     branches:
       - main
     paths:
-      - 'minesweeper/**'
+      - 'minesweeper/src/**'
 
 jobs:
   lint:
