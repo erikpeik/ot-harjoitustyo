@@ -4,5 +4,5 @@ Tämän sovelluksen avulla voit pelata **miinaharavaa**. Sovellus tallentaa tulo
 
 ## Dokumentaatio
 
-- [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
-- [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
+- [Vaatimusmäärittely](./minesweeper/dokumentaatio/vaatimusmaarittely.md)
+- [Työaikakirjanpito](./minesweeper/dokumentaatio/tuntikirjanpito.md)
