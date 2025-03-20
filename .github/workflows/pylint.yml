@@ -42,4 +42,4 @@ jobs:
       - name: Run Pylint
         run: |
           cd minesweeper
-          poetry run pylint $(git ls-files '*.py')
+          poetry run pylint src
