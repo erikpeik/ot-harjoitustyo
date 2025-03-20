@@ -40,3 +40,19 @@ class Board:
                 ):
                     adjacent_bombs += 1
         return adjacent_bombs
+
+    def reveal_empty_tiles(self, piece: Piece):
+        if self.calculate_adjacent_bombs(piece) != 0:
+            piece.reveal()
+            return
+
+        row, col = piece.location
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                if (
+                    0 <= row + i < self.__size[0]
+                    and 0 <= col + j < self.__size[1]
+                    and not self.__board[row + i][col + j].clicked
+                ):
+                    self.__board[row + i][col + j].reveal()
+                    self.reveal_empty_tiles(self.__board[row + i][col + j])

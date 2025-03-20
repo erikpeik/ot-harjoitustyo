@@ -55,5 +55,6 @@ class Tile:
         if self.is_clicked(mouse_pos, top_left):
             if button == 1:
                 piece.reveal()
+                self.__board.reveal_empty_tiles(piece)
             elif button == 3:
                 piece.flag_piece()
