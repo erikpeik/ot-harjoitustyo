@@ -4,3 +4,6 @@ class Piece:
         self.clicked = False
         self.flagged = False
         self.location = location
+
+    def reveal(self):
+        self.clicked = True

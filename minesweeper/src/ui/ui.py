@@ -11,6 +11,7 @@ class UI:
         self.game = None
         self.screensize = ()
         self.game_view = None
+        self.clock = pg.time.Clock()
 
     def run(self):
         self.run_game()
@@ -26,10 +27,14 @@ class UI:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     running = False
+                if event.type == pg.MOUSEBUTTONDOWN:
+                    position = pg.mouse.get_pos()
+                    self.game_view.handle_click(position)
             self.get_game_view(screen)
-            pg.display.flip()
         pg.quit()
 
     def get_game_view(self, screen):
         self.game_view = GameView(self.game, screen)
         self.game_view.draw()
+        self.clock.tick(60)
+        pg.display.flip()
