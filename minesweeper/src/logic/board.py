@@ -36,7 +36,10 @@ class Board:
         adjacent_bombs = 0
         for i in range(-1, 2):
             for j in range(-1, 2):
-                if 0 <= row + i < self.__size[0] and 0 <= col + j < self.__size[1]:
-                    if self.__board[row + i][col + j].is_bomb:
-                        adjacent_bombs += 1
+                if (
+                    0 <= row + i < self.__size[0]
+                    and 0 <= col + j < self.__size[1]
+                    and self.__board[row + i][col + j].is_bomb
+                ):
+                    adjacent_bombs += 1
         return adjacent_bombs

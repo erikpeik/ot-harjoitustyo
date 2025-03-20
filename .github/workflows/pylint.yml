@@ -46,4 +46,4 @@ jobs:
       - name: Run Pylint
         run: |
           cd minesweeper
-          poetry run pylint src
+          poetry run invoke lint
