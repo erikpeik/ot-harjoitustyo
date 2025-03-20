@@ -10,7 +10,8 @@ class Board:
 
     def new_board(self):
         board = [
-            [Piece(False) for _ in range(self.__size[1])] for _ in range(self.__size[0])
+            [Piece(False, (row, col)) for col in range(self.__size[1])]
+            for row in range(self.__size[0])
         ]
 
         mines_placed = 0
@@ -18,7 +19,7 @@ class Board:
             row = random.randint(0, self.__size[0] - 1)
             col = random.randint(0, self.__size[1] - 1)
             if not board[row][col].is_bomb:
-                board[row][col] = Piece(True)
+                board[row][col] = Piece(True, (row, col))
                 mines_placed += 1
 
         for row in board:
@@ -29,3 +30,13 @@ class Board:
 
     def get_board(self):
         return self.__board
+
+    def calculate_adjacent_bombs(self, piece: Piece) -> int:
+        row, col = piece.location
+        adjacent_bombs = 0
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                if 0 <= row + i < self.__size[0] and 0 <= col + j < self.__size[1]:
+                    if self.__board[row + i][col + j].is_bomb:
+                        adjacent_bombs += 1
+        return adjacent_bombs
