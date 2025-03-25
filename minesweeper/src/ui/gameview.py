@@ -17,6 +17,8 @@ class GameView:
             top_left = (top_left[0] + self.game.tile_size, 0)
 
     def handle_click(self, position: tuple, action: str):
+        if self.game.board.game_over:
+            return
         if not self.game.board.has_started():
             self.game.board.place_bombs(position)
             self.game.board.is_started = True

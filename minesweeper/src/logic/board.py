@@ -9,6 +9,7 @@ class Board:
         self.board = self.empty_board()
         self.tile_size = tile_size
         self.is_started = False
+        self.game_over = False
 
     def empty_board(self):
         return [
@@ -83,14 +84,24 @@ class Board:
             return
         for i in range(-1, 2):
             for j in range(-1, 2):
+                piece = self.board[row + i][col + j]
                 if (
                     0 <= row + i < self.size[0]
                     and 0 <= col + j < self.size[1]
                     and not (i == 0 and j == 0)
-                    and not self.board[row + i][col + j].clicked
+                    and not piece.clicked
+                    and not piece.flagged
                 ):
-                    self.board[row + i][col + j].reveal()
+                    piece.reveal()
                     self.reveal_empty_tiles(self.board[row + i][col + j])
+                    if piece.is_bomb:
+                        self.end_game()
 
     def has_started(self):
         return self.is_started
+
+    def end_game(self):
+        self.game_over = True
+
+    def has_ended(self):
+        return self.game_over
