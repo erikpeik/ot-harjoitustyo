@@ -51,13 +51,8 @@ class Tile:
         tile = self.get_tile(piece)
         screen.blit(tile, top_left)
 
-    def is_clicked(self, mouse_pos: tuple, top_left: tuple):
-        x, y = top_left
-        mx, my = mouse_pos
-        return x <= mx < x + self.rendered_size and y <= my < y + self.rendered_size
-
     def handle_click(self, mouse_pos: tuple, top_left: tuple, piece: Piece, action):
-        if self.is_clicked(mouse_pos, top_left):
+        if self.board.is_clicked_position(mouse_pos, top_left):
             if action == "reveal":
                 if piece.is_bomb:
                     piece.reveal()

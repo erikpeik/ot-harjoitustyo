@@ -23,7 +23,9 @@ class Board:
             row = random.randint(0, self.size[0] - 1)
             col = random.randint(0, self.size[1] - 1)
             piece = self.board[row][col]
-            if not piece.is_bomb and not self.is_clicked_position(position, (row, col)):
+            if not piece.is_bomb and not self.is_clicked_position(
+                position, (row * self.tile_size, col * self.tile_size)
+            ):
                 self.board[row][col] = Piece(True, (row, col))
                 mines_placed += 1
 
