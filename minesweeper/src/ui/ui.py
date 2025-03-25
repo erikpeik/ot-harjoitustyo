@@ -20,7 +20,7 @@ class UI:
         self.current_scene = "game"
         self.game = Minesweeper()
 
-        screen = pg.display.set_mode(self.game.board_size)
+        screen = pg.display.set_mode(self.game.frame_size)
         running = True
 
         left_mouse_down = False

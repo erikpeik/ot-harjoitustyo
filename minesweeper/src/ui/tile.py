@@ -1,14 +1,14 @@
 import pygame as pg
 from logic.piece import Piece
-from logic.minesweeper import Minesweeper
+from logic.board import Board
 
 
 class Tile:
-    def __init__(self, game: Minesweeper):
+    def __init__(self, board: Board, tile_size):
         self.sprite_sheet = pg.image.load("src/assets/tiles.png")
         self.tile_size = 16
-        self.rendered_size = game.tile_size
-        self.board = game.board
+        self.rendered_size = tile_size
+        self.board = board
 
     def get_tile(self, piece: Piece):
         x = 0

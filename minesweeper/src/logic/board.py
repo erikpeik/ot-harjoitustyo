@@ -3,13 +3,14 @@ from logic.piece import Piece
 
 
 class Board:
-    def __init__(self, size: tuple, mines: int, tile_size: int):
+    def __init__(self, size: tuple, mines: int, tile_size: int, board_offset: tuple):
         self.size = size
         self.mine_count = mines
         self.board = self.empty_board()
         self.tile_size = tile_size
         self.is_started = False
         self.game_over = False
+        self.offset = board_offset
 
     def empty_board(self):
         return [
@@ -24,7 +25,11 @@ class Board:
             col = random.randint(0, self.size[1] - 1)
             piece = self.board[row][col]
             if not piece.is_bomb and not self.is_clicked_position(
-                position, (row * self.tile_size, col * self.tile_size)
+                position,
+                (
+                    row * self.tile_size + self.offset[0],
+                    col * self.tile_size + self.offset[1],
+                ),
             ):
                 self.board[row][col] = Piece(True, (row, col))
                 mines_placed += 1
