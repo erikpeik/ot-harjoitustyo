@@ -3,29 +3,36 @@ from logic.piece import Piece
 
 
 class Board:
-    def __init__(self, size: tuple, mines: int):
-        self.__size = size
-        self.__mine_count = mines
-        self.__board = self.new_board()
+    def __init__(self, size: tuple, mines: int, tile_size: int):
+        self.size = size
+        self.mine_count = mines
+        self.board = self.empty_board()
+        self.tile_size = tile_size
+        self.is_started = False
 
-    def new_board(self):
-        board = [
-            [Piece(False, (row, col)) for col in range(self.__size[1])]
-            for row in range(self.__size[0])
+    def empty_board(self):
+        return [
+            [Piece(False, (row, col)) for col in range(self.size[1])]
+            for row in range(self.size[0])
         ]
 
+    def place_bombs(self, position: tuple):
         mines_placed = 0
-        while mines_placed < self.__mine_count:
-            row = random.randint(0, self.__size[0] - 1)
-            col = random.randint(0, self.__size[1] - 1)
-            if not board[row][col].is_bomb:
-                board[row][col] = Piece(True, (row, col))
+        while mines_placed < self.mine_count:
+            row = random.randint(0, self.size[0] - 1)
+            col = random.randint(0, self.size[1] - 1)
+            piece = self.board[row][col]
+            if not piece.is_bomb and not self.is_clicked_position(position, (row, col)):
+                self.board[row][col] = Piece(True, (row, col))
                 mines_placed += 1
 
-        return board
+    def is_clicked_position(self, position: tuple, top_left: tuple):
+        x, y = top_left
+        mx, my = position
+        return x <= mx < x + self.tile_size and y <= my < y + self.tile_size
 
     def get_board(self):
-        return self.__board
+        return self.board
 
     def calculate_adjacent_bombs(self, piece: Piece) -> int:
         row, col = piece.location
@@ -33,10 +40,10 @@ class Board:
         for i in range(-1, 2):
             for j in range(-1, 2):
                 if (
-                    0 <= row + i < self.__size[0]
-                    and 0 <= col + j < self.__size[1]
+                    0 <= row + i < self.size[0]
+                    and 0 <= col + j < self.size[1]
                     and not (i == 0 and j == 0)
-                    and self.__board[row + i][col + j].is_bomb
+                    and self.board[row + i][col + j].is_bomb
                 ):
                     adjacent_bombs += 1
         return adjacent_bombs
@@ -53,12 +60,12 @@ class Board:
         for i in range(-1, 2):
             for j in range(-1, 2):
                 if (
-                    0 <= row + i < self.__size[0]
-                    and 0 <= col + j < self.__size[1]
-                    and not self.__board[row + i][col + j].clicked
+                    0 <= row + i < self.size[0]
+                    and 0 <= col + j < self.size[1]
+                    and not self.board[row + i][col + j].clicked
                 ):
-                    self.__board[row + i][col + j].reveal()
-                    self.reveal_empty_tiles(self.__board[row + i][col + j])
+                    self.board[row + i][col + j].reveal()
+                    self.reveal_empty_tiles(self.board[row + i][col + j])
 
     def chord_piece(self, piece: Piece):
         row, col = piece.location
@@ -66,10 +73,10 @@ class Board:
         for i in range(-1, 2):
             for j in range(-1, 2):
                 if (
-                    0 <= row + i < self.__size[0]
-                    and 0 <= col + j < self.__size[1]
+                    0 <= row + i < self.size[0]
+                    and 0 <= col + j < self.size[1]
                     and not (i == 0 and j == 0)
-                    and self.__board[row + i][col + j].flagged
+                    and self.board[row + i][col + j].flagged
                 ):
                     flagged_adjacent += 1
         if flagged_adjacent != self.calculate_adjacent_bombs(piece):
@@ -77,10 +84,13 @@ class Board:
         for i in range(-1, 2):
             for j in range(-1, 2):
                 if (
-                    0 <= row + i < self.__size[0]
-                    and 0 <= col + j < self.__size[1]
+                    0 <= row + i < self.size[0]
+                    and 0 <= col + j < self.size[1]
                     and not (i == 0 and j == 0)
-                    and not self.__board[row + i][col + j].clicked
+                    and not self.board[row + i][col + j].clicked
                 ):
-                    self.__board[row + i][col + j].reveal()
-                    self.reveal_empty_tiles(self.__board[row + i][col + j])
+                    self.board[row + i][col + j].reveal()
+                    self.reveal_empty_tiles(self.board[row + i][col + j])
+
+    def has_started(self):
+        return self.is_started

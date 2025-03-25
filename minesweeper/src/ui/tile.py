@@ -6,15 +6,15 @@ from logic.minesweeper import Minesweeper
 class Tile:
     def __init__(self, game: Minesweeper):
         self.sprite_sheet = pg.image.load("src/assets/tiles.png")
-        self.__tile_size = 16
+        self.tile_size = 16
         self.rendered_size = game.tile_size
-        self.__board = game.board
+        self.board = game.board
 
     def get_tile(self, piece: Piece):
         x = 0
         y = 0
 
-        adjacent_bombs = self.__board.calculate_adjacent_bombs(piece)
+        adjacent_bombs = self.board.calculate_adjacent_bombs(piece)
 
         if piece.flagged:
             x = 2
@@ -32,10 +32,10 @@ class Tile:
 
         tile = self.sprite_sheet.subsurface(
             pg.Rect(
-                x * self.__tile_size,
-                y * self.__tile_size,
-                self.__tile_size,
-                self.__tile_size,
+                x * self.tile_size,
+                y * self.tile_size,
+                self.tile_size,
+                self.tile_size,
             )
         )
         return pg.transform.scale(tile, (self.rendered_size, self.rendered_size))
@@ -53,8 +53,8 @@ class Tile:
         if self.is_clicked(mouse_pos, top_left):
             if action == "reveal":
                 piece.reveal()
-                self.__board.reveal_empty_tiles(piece)
+                self.board.reveal_empty_tiles(piece)
             elif action == "flag":
                 piece.flag_piece()
             elif action == "chord":
-                self.__board.chord_piece(piece)
+                self.board.chord_piece(piece)
