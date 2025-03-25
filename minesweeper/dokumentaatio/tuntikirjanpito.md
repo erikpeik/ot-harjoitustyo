@@ -10,3 +10,4 @@
 | 25.3. | 3 | Vasta ensimmäinen klikkauksen jälkeen pommit asetetaan kentälle. |
 | | 2 | Game over kun pelissä tehdään virhe|
 | | 1 | Bugien korjaus |
+| | 1 | Lisätty frame pelin ympärille |
