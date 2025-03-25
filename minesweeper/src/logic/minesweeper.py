@@ -11,12 +11,10 @@ class Minesweeper:
             size = (size[0], max_height)
 
         max_bombs = size[0] * size[1] - 1
-        if mines > max_bombs:
-            mines = max_bombs
+        mines = min(mines, max_bombs)
 
         min_bombs = 1
-        if mines < min_bombs:
-            mines = min_bombs
+        mines = max(mines, min_bombs)
 
         self.size = size
         self.board = Board(size, mines, tile_size)

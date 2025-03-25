@@ -86,17 +86,18 @@ class Board:
             return
         for i in range(-1, 2):
             for j in range(-1, 2):
-                if (
-                    0 <= row + i < self.size[0]
-                    and 0 <= col + j < self.size[1]
-                    and not (i == 0 and j == 0)
-                ):
-                    piece = self.board[row + i][col + j]
-                    if not piece.clicked and not piece.flagged:
-                        piece.reveal()
-                        self.reveal_empty_tiles(self.board[row + i][col + j])
-                        if piece.is_bomb:
-                            self.end_game()
+                if i == 0 and j == 0:
+                    continue
+                new_row, new_col = row + i, col + j
+                if not (0 <= new_row < self.size[0] and 0 <= new_col < self.size[1]):
+                    continue
+                piece = self.board[row + i][col + j]
+                if piece.clicked or piece.flagged:
+                    continue
+                piece.reveal()
+                self.reveal_empty_tiles(self.board[row + i][col + j])
+                if piece.is_bomb:
+                    self.end_game()
 
     def has_started(self):
         return self.is_started
