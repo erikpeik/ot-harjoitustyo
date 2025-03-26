@@ -112,3 +112,8 @@ class Board:
 
     def has_lost(self):
         return self.game_over
+
+    def reset_board(self):
+        self.board = self.empty_board()
+        self.is_started = False
+        self.game_over = False

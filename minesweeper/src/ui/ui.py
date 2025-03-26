@@ -18,7 +18,7 @@ class UI:
 
     def run_game(self):
         self.current_scene = "game"
-        self.game = Minesweeper()
+        self.game = Minesweeper((9, 9), 10)
 
         screen = pg.display.set_mode(self.game.frame_size)
         running = True
