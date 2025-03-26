@@ -110,5 +110,5 @@ class Board:
     def end_game(self):
         self.game_over = True
 
-    def has_ended(self):
+    def has_lost(self):
         return self.game_over

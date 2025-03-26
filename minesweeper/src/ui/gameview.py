@@ -1,5 +1,6 @@
 from ui.tile import Tile
 from ui.frame import Frame
+from ui.start_face import StartFace
 from logic.minesweeper import Minesweeper
 
 
@@ -9,9 +10,11 @@ class GameView:
         self.screen = screen
         self.tile = Tile(game.board, game.tile_size)
         self.frame = Frame(screen, game.frame_size, game.board_offset)
+        self._start_face = StartFace(game, game.frame_size)
 
     def draw(self):
         self.frame.draw_frame()
+        self._start_face.draw(self.screen)
         top_left = self.game.board_offset
         for row in self.game.board.get_board():
             for piece in row:

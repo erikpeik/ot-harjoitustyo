@@ -1,5 +1,4 @@
 import pygame as pg
-from logic.minesweeper import Minesweeper
 
 
 class Frame:
@@ -12,7 +11,6 @@ class Frame:
         self._screen = screen
 
     def draw_frame(self):
-        # background
         self._screen.fill(self._gray_color)
         self.draw_outline((0, 0), self._frame_size, False)
         self.draw_outline(
@@ -20,8 +18,13 @@ class Frame:
             (self._frame_size[0] - 16 + 3, self._frame_size[1] - 16 + 3),
             True,
         )
+        self.draw_outline(
+            (16 - 3, 16 - 3),
+            (self._frame_size[0] - 16 + 3, self._board_offset[1] - 16 + 3),
+            True,
+        )
 
-    def draw_outline(self, top_left, bottom_right, reverse=False):
+    def draw_outline(self, top_left, bottom_right, reverse=False, width=5):
         top_left = (top_left[0] + 2, top_left[1] + 2)
         bottom_right = (bottom_right[0] - 2, bottom_right[1] - 2)
         bottom_left = (top_left[0], bottom_right[1])
@@ -32,26 +35,26 @@ class Frame:
             self._white_color if not reverse else self._dark_gray_color,
             top_left,
             top_right,
-            5,
+            width,
         )
         pg.draw.line(
             self._screen,
             self._dark_gray_color if not reverse else self._white_color,
             top_right,
             bottom_right,
-            5,
+            width,
         )
         pg.draw.line(
             self._screen,
             self._dark_gray_color if not reverse else self._white_color,
             bottom_right,
             bottom_left,
-            5,
+            width,
         )
         pg.draw.line(
             self._screen,
             self._white_color if not reverse else self._dark_gray_color,
             bottom_left,
             top_left,
-            5,
+            width,
         )

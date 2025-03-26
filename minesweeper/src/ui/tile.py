@@ -17,7 +17,7 @@ class Tile:
         adjacent_bombs = self.board.calculate_adjacent_bombs(piece)
 
         if piece.flagged:
-            if not piece.is_bomb and self.board.has_ended():
+            if not piece.is_bomb and self.board.has_lost():
                 x = 7
                 y = 0
             else:
@@ -33,7 +33,7 @@ class Tile:
             else:
                 x = 1
                 y = 0
-        elif piece.is_bomb and self.board.has_ended():
+        elif piece.is_bomb and self.board.has_lost():
             x = 5
             y = 0
 
