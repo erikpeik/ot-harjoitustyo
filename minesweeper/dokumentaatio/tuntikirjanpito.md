@@ -11,3 +11,4 @@
 | | 2 | Game over kun pelissä tehdään virhe|
 | | 1 | Bugien korjaus |
 | | 1 | Lisätty frame pelin ympärille |
+| | 1 | Pelin resetointi näppäimen toiminnalisuus lisätty |
