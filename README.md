@@ -24,6 +24,18 @@ Komennot suoritetaan alikansiossa `/minesweeper`
 ```bash
 poetry run invoke start
 ```
+### Testaus
+
+```bash
+poetry run invoke test
+```
+### Testikattavuuden tarkistus
+
+```bash
+poetry run invoke coverage-report
+```
+Raportti generoituu *htmlcov*-kansioon.
+
 
 ### Pylint-tarkistus
 
