@@ -2,6 +2,7 @@ import random
 import pygame as pg
 
 from logic.piece import Piece
+from logic.board_status import BoardStatus
 
 
 class Board:
@@ -10,10 +11,9 @@ class Board:
         self.mine_count = mines
         self.board = self.empty_board()
         self.tile_size = tile_size
-        self.is_started = False
-        self.game_over = False
+        self.status = BoardStatus.NOT_STARTED
         self.offset = board_offset
-        self.start_end = [0, 0]
+        self.time_ticks = [0, 0]
 
     def empty_board(self):
         return [
@@ -108,23 +108,22 @@ class Board:
                     self.end_game()
 
     def has_started(self):
-        return self.is_started
+        return self.status != BoardStatus.NOT_STARTED
 
     def end_game(self):
-        self.game_over = True
-        self.start_end[1] = pg.time.get_ticks()
+        self.status = BoardStatus.GAME_OVER
+        self.time_ticks[1] = pg.time.get_ticks()
 
     def has_lost(self):
-        return self.game_over
+        return self.status == BoardStatus.GAME_OVER
 
     def game_is_running(self):
-        return self.is_started and not self.game_over
+        return self.status == BoardStatus.RUNNING
 
     def reset_board(self):
         self.board = self.empty_board()
-        self.is_started = False
-        self.game_over = False
-        self.start_end = [0, 0]
+        self.status = BoardStatus.NOT_STARTED
+        self.time_ticks = [0, 0]
 
     def mines_left(self):
         return self.mine_count - sum(
@@ -132,10 +131,10 @@ class Board:
         )
 
     def get_time(self):
-        if self.start_end[0] == 0:
+        if self.time_ticks[0] == 0:
             return 0
-        if self.game_over:
-            return (self.start_end[1] - self.start_end[0]) // 1000
-        if not self.is_started:
+        if self.status == BoardStatus.GAME_OVER:
+            return (self.time_ticks[1] - self.time_ticks[0]) // 1000
+        if not self.has_started():
             return 0
-        return (pg.time.get_ticks() - self.start_end[0]) // 1000
+        return (pg.time.get_ticks() - self.time_ticks[0]) // 1000

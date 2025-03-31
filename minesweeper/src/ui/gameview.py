@@ -3,6 +3,7 @@ from ui.frame import Frame
 from ui.start_face import StartFace
 from ui.number_board import NumberBoard
 from logic.minesweeper import Minesweeper
+from logic.board_status import BoardStatus
 
 import pygame as pg
 
@@ -38,10 +39,10 @@ class GameView:
     def handle_click(self, position: tuple, action: str):
         if not self.game.board.has_started():
             self.game.board.place_bombs(position)
-            self.game.board.is_started = True
-            self.game.board.start_end[0] = pg.time.get_ticks()
+            self.game.board.status = BoardStatus.RUNNING
+            self.game.board.time_ticks[0] = pg.time.get_ticks()
 
-        if not self.game.board.game_over:
+        if self.game.board.status == BoardStatus.RUNNING:
             top_left = self.game.board_offset
             for row in self.game.board.get_board():
                 for piece in row:
