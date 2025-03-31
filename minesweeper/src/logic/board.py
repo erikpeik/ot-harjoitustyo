@@ -117,6 +117,9 @@ class Board:
     def has_lost(self):
         return self.status == BoardStatus.GAME_OVER
 
+    def has_won(self):
+        return self.status == BoardStatus.WON
+
     def game_is_running(self):
         return self.status == BoardStatus.RUNNING
 
@@ -126,15 +129,24 @@ class Board:
         self.time_ticks = [0, 0]
 
     def mines_left(self):
+        if self.has_won():
+            return 0
         return self.mine_count - sum(
             piece.flagged for row in self.board for piece in row
         )
 
+    def check_win(self):
+        for row in self.board:
+            for piece in row:
+                if not piece.is_bomb and not piece.clicked:
+                    return False
+        self.status = BoardStatus.WON
+        self.time_ticks[1] = pg.time.get_ticks()
+        return True
+
     def get_time(self):
         if self.time_ticks[0] == 0:
             return 0
-        if self.status == BoardStatus.GAME_OVER:
+        if not self.game_is_running():
             return (self.time_ticks[1] - self.time_ticks[0]) // 1000
-        if not self.has_started():
-            return 0
         return (pg.time.get_ticks() - self.time_ticks[0]) // 1000

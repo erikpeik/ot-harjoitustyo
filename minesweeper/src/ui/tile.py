@@ -17,12 +17,8 @@ class Tile:
         adjacent_bombs = self.board.calculate_adjacent_bombs(piece)
 
         if piece.flagged:
-            if not piece.is_bomb and self.board.has_lost():
-                x = 7
-                y = 0
-            else:
-                x = 2
-                y = 0
+            x = 2
+            y = 0
         elif piece.clicked:
             if piece.is_bomb:
                 x = 6
@@ -33,9 +29,13 @@ class Tile:
             else:
                 x = 1
                 y = 0
-        elif piece.is_bomb and self.board.has_lost():
-            x = 5
-            y = 0
+        elif piece.is_bomb:
+            if self.board.has_won():
+                x = 2
+                y = 0
+            elif self.board.has_lost():
+                x = 5
+                y = 0
 
         tile = self.sprite_sheet.subsurface(
             pg.Rect(
@@ -64,3 +64,4 @@ class Tile:
                 piece.flag_piece()
             elif action == "chord":
                 self.board.chord_piece(piece)
+            self.board.check_win()

@@ -21,6 +21,9 @@ class StartFace:
         if self._board.has_lost():
             x = 4
             y = 0
+        elif self._board.has_won():
+            x = 3
+            y = 0
 
         face = self._sprite_sheet.subsurface(
             pg.Rect(
