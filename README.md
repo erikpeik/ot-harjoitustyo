@@ -45,4 +45,4 @@ poetry run invoke lint
 
 ## Credits
 
-Projektissa käytetyt kuvat ovat tehneet [Black Squirrel](https://www.spriters-resource.com/submitter/Black+Squirrel/), TCRF, Inky ja DaSpriter121. Sheets ovat ladattu [The Spriters Resource](https://www.spriters-resource.com/pc_computer/minesweeper/sheet/19849/) -sivustolta.
+Projektissa käytetyt kuvat ovat tehneet [Black Squirrel](https://www.spriters-resource.com/submitter/Black+Squirrel/), TCRF, Inky ja DaSpriter121. Sheets on ladattu [The Spriters Resource](https://www.spriters-resource.com/pc_computer/minesweeper/sheet/19849/) -sivustolta.
