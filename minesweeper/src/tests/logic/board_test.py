@@ -8,7 +8,8 @@ class TestBoard(unittest.TestCase):
         self.board.place_bombs((16, 16))
 
     def test_bomb_is_placed(self):
-        bomb_count = sum(piece.is_bomb for row in self.board.board for piece in row)
+        bomb_count = sum(
+            piece.is_bomb for row in self.board.board for piece in row)
         self.assertEqual(bomb_count, self.board.mine_count)
 
     def test_get_board_returns_board(self):
