@@ -14,3 +14,4 @@
 | | 1 | Pelin resetointi näppäimen toiminnalisuus lisätty |
 | 31.3. | 2 | Lisätty numeropaneeli jäljellä olevien pommien näyttämiseen ja ajanhallinta toiminnallisuus. |
 | | 1 | Paranneltu pelin tilaa ja lisätty pelin voitto logiikka |
+| | 2 | Alustavat testit ja dokumentaation päivittämistä |

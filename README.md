@@ -7,6 +7,7 @@ Tämän sovelluksen avulla voit pelata **miinaharavaa**. Sovellus on toteutettu 
 - [Käyttöohje](./minesweeper/dokumentaatio/kayttoohje.md)
 - [Vaatimusmäärittely](./minesweeper/dokumentaatio/vaatimusmaarittely.md)
 - [Työaikakirjanpito](./minesweeper/dokumentaatio/tuntikirjanpito.md)
+- [Changelog](./minesweeper/dokumentaatio/changelog.md)
 
 ## Asennus
 
@@ -29,3 +30,7 @@ poetry run invoke start
 ```bash
 poetry run invoke lint
 ```
+
+## Credits
+
+Projektissa käytetyt kuvat ovat tehneet [Black Squirrel](https://www.spriters-resource.com/submitter/Black+Squirrel/), TCRF, Inky ja DaSpriter121. Sheets ovat ladattu [The Spriters Resource](https://www.spriters-resource.com/pc_computer/minesweeper/sheet/19849/) -sivustolta.
