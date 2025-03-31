@@ -1,4 +1,6 @@
 import random
+import pygame as pg
+
 from logic.piece import Piece
 
 
@@ -11,6 +13,7 @@ class Board:
         self.is_started = False
         self.game_over = False
         self.offset = board_offset
+        self.start_end = [0, 0]
 
     def empty_board(self):
         return [
@@ -109,11 +112,30 @@ class Board:
 
     def end_game(self):
         self.game_over = True
+        self.start_end[1] = pg.time.get_ticks()
 
     def has_lost(self):
         return self.game_over
+
+    def game_is_running(self):
+        return self.is_started and not self.game_over
 
     def reset_board(self):
         self.board = self.empty_board()
         self.is_started = False
         self.game_over = False
+        self.start_end = [0, 0]
+
+    def mines_left(self):
+        return self.mine_count - sum(
+            piece.flagged for row in self.board for piece in row
+        )
+
+    def get_time(self):
+        if self.start_end[0] == 0:
+            return 0
+        if self.game_over:
+            return (self.start_end[1] - self.start_end[0]) // 1000
+        if not self.is_started:
+            return 0
+        return (pg.time.get_ticks() - self.start_end[0]) // 1000
