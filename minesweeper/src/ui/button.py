@@ -16,11 +16,11 @@ class Button:
         font = pg.font.Font(font_path, self.height // 3 * 2)
 
         font_width = font.size(self.label)[0]
-        button_width = self.width if self.width else font_width + self.height
-        button_image = pg.transform.scale(button_image, (button_width, self.height))
+        self.width = self.width if self.width else font_width + self.height
+        button_image = pg.transform.scale(button_image, (self.width, self.height))
         text = font.render(self.label, True, (0, 0, 0))
         text_rect = text.get_rect(
-            center=(self.pos[0] + button_width // 2, self.pos[1] + self.height // 2)
+            center=(self.pos[0] + self.width // 2, self.pos[1] + self.height // 2)
         )
         screen.blit(button_image, self.pos)
         screen.blit(text, text_rect)

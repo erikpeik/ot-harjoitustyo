@@ -9,7 +9,7 @@ class TitleBar:
         self._text_color = (0, 0, 0)
         self._font = pg.font.Font(None, 24)
         self._bar_color = (220, 220, 220)
-        self._menu_button = Button("Menu", (0, 0), self._bar_height)
+        self.menu_button = Button("Menu", (0, 0), self._bar_height)
 
     def draw(self, screen):
         pg.draw.rect(
@@ -21,4 +21,4 @@ class TitleBar:
             (0, 0, self._screen_size[0], self._bar_height),
             2,
         )
-        self._menu_button.draw(screen)
+        self.menu_button.draw(screen)

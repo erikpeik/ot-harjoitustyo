@@ -41,6 +41,9 @@ class UI:
                 if event.type == pg.MOUSEBUTTONDOWN:
                     position = pg.mouse.get_pos()
                     if event.button == 1:
+                        if self.game_view.title_bar.menu_button.is_clicked(position):
+                            self.run_menu()
+                            self.game.running = False
                         left_mouse_down = True
                         if right_mouse_down:
                             self.game_view.handle_click(position, "chord")

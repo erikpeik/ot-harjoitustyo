@@ -18,7 +18,7 @@ class GameView:
         self.frame = Frame(screen, game.frame_size, game.board_offset)
         self._start_face = StartFace(game.board, game.frame_size)
         self._number_board = NumberBoard()
-        self._title_bar = TitleBar(screen.get_size())
+        self.title_bar = TitleBar(screen.get_size())
 
     def draw(self):
         self.frame.draw_frame()
@@ -34,7 +34,7 @@ class GameView:
                 33 + 30,
             ),
         )
-        self._title_bar.draw(self.screen)
+        self.title_bar.draw(self.screen)
         top_left = self.game.board_offset
         for row in self.game.board.get_board():
             for piece in row:
