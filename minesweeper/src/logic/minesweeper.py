@@ -22,10 +22,12 @@ class Minesweeper:
         self.board_size = (size[0] * tile_size, size[1] * tile_size)
         self.frame_size = (
             self.board_size[0] + 16 * 2,
-            self.board_size[1] + 16 + 46 + 16 * 4,
+            self.board_size[1] + 16 + 46 + 16 * 4 + 30,
         )
-        self.board_offset = (16, 46 + 16 * 4)
+        self.board_offset = (16, 46 + 16 * 4 + 30)
         self.board = Board(size, mines, tile_size, self.board_offset)
+        self.running = True
 
     def reset_game(self):
         self.board.reset_board()
+        self.running = True
