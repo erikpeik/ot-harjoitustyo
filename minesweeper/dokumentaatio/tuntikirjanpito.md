@@ -15,3 +15,6 @@
 | 31.3. | 2 | Lisätty numeropaneeli jäljellä olevien pommien näyttämiseen ja ajanhallinta toiminnallisuus. |
 | | 1 | Paranneltu pelin tilaa ja lisätty pelin voitto logiikka |
 | | 2 | Alustavat testit ja dokumentaation päivittämistä |
+| 4.4. | 4 | Lisätty alkuvalikko pelin vaikeusasteen valitsemiseksi. |
+| | 1 | Pelinäkymässä mahdolllisuus palata alkuvalikkoon |
+| 8.4. | 2 | Dokumentaation päivittelyä ja arkkitehtuuri Luokkakaavion tekoa |

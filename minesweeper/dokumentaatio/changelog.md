@@ -10,3 +10,8 @@
 - Klikkaustoiminnallisuus lisätty ja tyhjien ruutujen paljastaminen
 - Liputus toiminnallisuus lisätty
 - Ensimmäisten testien lisääminen pelin logiikalle
+
+## Viikko 4
+
+- Lisätty alkuvalikko pelin vaikeusasteen valitsemiseksi
+  - 3 eri vaikeusastetta: helppo, keskivaikea ja vaikea

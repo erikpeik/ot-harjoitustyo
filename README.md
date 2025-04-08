@@ -6,6 +6,7 @@ Tämän sovelluksen avulla voit pelata **miinaharavaa**. Sovellus on toteutettu 
 
 - [Käyttöohje](./minesweeper/dokumentaatio/kayttoohje.md)
 - [Vaatimusmäärittely](./minesweeper/dokumentaatio/vaatimusmaarittely.md)
+- [Arkkitehtuurikuvaus](./minesweeper/dokumentaatio/arkkitehtuuri.md)
 - [Työaikakirjanpito](./minesweeper/dokumentaatio/tuntikirjanpito.md)
 - [Changelog](./minesweeper/dokumentaatio/changelog.md)
 
