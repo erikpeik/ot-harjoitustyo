@@ -29,3 +29,8 @@ def coverage_report(ctx):
 @task
 def format(ctx):
     ctx.run("autopep8 --in-place --recursive src")
+
+
+@task
+def format_check(ctx):
+    ctx.run("autopep8 --recursive --diff src")
