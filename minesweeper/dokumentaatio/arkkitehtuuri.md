@@ -37,3 +37,24 @@ classDiagram
     Minesweeper "1" --> "1" Board
     Board "1" --> "*" Piece
 ```
+
+## Päätoiminnallisuudet
+
+Kuvataan seuraavaksi muutama päätoiminnallisuus sekvenssikaaviona.
+
+### Käyttäjä klikkaa ruutua pelilaudalla
+
+```mermaid
+sequenceDiagram
+    actor User
+
+
+    User->>UI: Clicks on tile
+    UI->>GameView: handle_click(pos, action)
+    GameView->>Tile: handle_click(pos, top_left, piece, action)
+    Tile->>Piece: reveal()
+    Piece-->UI:  clicked = True
+    UI->>GameView: draw()
+
+```
+
