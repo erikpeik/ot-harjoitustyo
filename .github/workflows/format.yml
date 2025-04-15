@@ -1,4 +1,4 @@
-name: Format with autopep8
+name: Check code formatting with autopep8
 
 on:
   workflow_dispatch:
@@ -47,4 +47,4 @@ jobs:
       - name: Run autopep8
         run: |
           cd minesweeper
-          poetry run invoke format
+          poetry run invoke format-check
