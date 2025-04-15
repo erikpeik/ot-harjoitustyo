@@ -15,3 +15,8 @@
 
 - Lisätty alkuvalikko pelin vaikeusasteen valitsemiseksi
   - 3 eri vaikeusastetta: helppo, keskivaikea ja vaikea
+- Pelinäkymässä mahdollisuus palata alkuvalikkoon
+
+## Viikko 5
+
+- Ei paljon aikaa koodata, mutta testailin pelin toimivuutta ja kirjoitin testejä

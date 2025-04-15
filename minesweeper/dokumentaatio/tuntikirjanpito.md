@@ -18,3 +18,4 @@
 | 4.4. | 4 | Lisätty alkuvalikko pelin vaikeusasteen valitsemiseksi. |
 | | 1 | Pelinäkymässä mahdolllisuus palata alkuvalikkoon |
 | 8.4. | 2 | Dokumentaation päivittelyä ja arkkitehtuuri Luokkakaavion tekoa |
+| 15.4 | 4 | Viime viikon feedbackin korjauksia ja testien kirjoittamista, dokumentaation päivittelyä. |
