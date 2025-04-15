@@ -33,4 +33,4 @@ def format(ctx):
 
 @task
 def format_check(ctx):
-    ctx.run("autopep8 --recursive --diff src")
+    ctx.run("autopep8 --recursive --exit-code --diff src")
