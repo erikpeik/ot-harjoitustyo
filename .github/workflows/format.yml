@@ -47,4 +47,4 @@ jobs:
       - name: Run autopep8
         run: |
           cd minesweeper
-          poetry run format
+          poetry run invoke format
