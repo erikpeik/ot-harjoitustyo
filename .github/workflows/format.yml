@@ -1,6 +1,7 @@
 name: Format with autopep8
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
