@@ -10,6 +10,10 @@ Tämän sovelluksen avulla voit pelata **miinaharavaa**. Sovellus on toteutettu 
 - [Työaikakirjanpito](./minesweeper/dokumentaatio/tuntikirjanpito.md)
 - [Changelog](./minesweeper/dokumentaatio/changelog.md)
 
+## Releases
+
+- [Viikko 5](https://github.com/erikpeik/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Asennus
 
 1. Siirry alikansioon `/minesweeper`
