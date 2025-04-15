@@ -46,6 +46,3 @@ class TestBoard(unittest.TestCase):
                 if not piece.is_bomb:
                     piece.clicked = True
         self.assertTrue(self.test_board.check_win())
-
-
-

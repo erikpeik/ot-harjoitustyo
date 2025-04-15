@@ -30,7 +30,8 @@ class GameView:
             self.screen,
             self.game.board.get_time(),
             (
-                self.game.frame_size[0] - 26 - self._number_board.rendered_size[0] * 3,
+                self.game.frame_size[0] - 26 -
+                self._number_board.rendered_size[0] * 3,
                 33 + 30,
             ),
         )
@@ -40,7 +41,8 @@ class GameView:
             for piece in row:
                 self.tile.draw(self.screen, top_left, piece)
                 top_left = (top_left[0], top_left[1] + self.game.tile_size)
-            top_left = (top_left[0] + self.game.tile_size, self.game.board_offset[1])
+            top_left = (top_left[0] + self.game.tile_size,
+                        self.game.board_offset[1])
 
     def handle_click(self, position: tuple, action: str):
         if not self.game.board.has_started():

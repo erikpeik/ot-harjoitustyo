@@ -13,7 +13,8 @@ class TitleBar:
 
     def draw(self, screen):
         pg.draw.rect(
-            screen, self._bar_color, (0, 0, self._screen_size[0], self._bar_height)
+            screen, self._bar_color, (0, 0,
+                                      self._screen_size[0], self._bar_height)
         )
         pg.draw.rect(
             screen,

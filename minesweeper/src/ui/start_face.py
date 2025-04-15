@@ -38,7 +38,8 @@ class StartFace:
     def draw(self, screen):
         face = self.get_face()
         screen.blit(
-            face, (self._frame_size[0] // 2 - (self._rendered_size // 2), 32 + 30)
+            face, (self._frame_size[0] // 2 -
+                   (self._rendered_size // 2), 32 + 30)
         )
 
     def is_clicked(self, mouse_pos: tuple):
