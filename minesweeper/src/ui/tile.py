@@ -11,32 +11,7 @@ class Tile:
         self.board = board
 
     def get_tile(self, piece: Piece):
-        x = 0
-        y = 0
-
-        adjacent_bombs = self.board.calculate_adjacent_bombs(piece)
-
-        if piece.flagged:
-            x = 2
-            y = 0
-        elif piece.clicked:
-            if piece.is_bomb:
-                x = 6
-                y = 0
-            elif adjacent_bombs > 0:
-                x = adjacent_bombs - 1
-                y = 1
-            else:
-                x = 1
-                y = 0
-        elif piece.is_bomb:
-            if self.board.has_won():
-                x = 2
-                y = 0
-            elif self.board.has_lost():
-                x = 5
-                y = 0
-
+        x, y = self.__get_tile_type(piece)
         tile = self.sprite_sheet.subsurface(
             pg.Rect(
                 x * self.tile_size,
@@ -52,16 +27,40 @@ class Tile:
         screen.blit(tile, top_left)
 
     def handle_click(self, mouse_pos: tuple, top_left: tuple, piece: Piece, action):
-        if self.board.is_clicked_position(mouse_pos, top_left):
-            if action == "reveal":
-                if piece.is_bomb:
-                    piece.reveal()
-                    self.board.end_game()
-                else:
-                    piece.reveal()
-                    self.board.reveal_empty_tiles(piece)
-            elif action == "flag":
-                piece.flag_piece()
-            elif action == "chord":
-                self.board.chord_piece(piece)
-            self.board.check_win()
+        if not self.board.is_clicked_position(mouse_pos, top_left):
+            return
+
+        if action == "reveal":
+            if piece.is_bomb:
+                piece.reveal()
+                self.board.end_game()
+                return
+            piece.reveal()
+            self.board.reveal_empty_tiles(piece)
+        elif action == "flag":
+            piece.flag_piece()
+        elif action == "chord":
+            self.board.chord_piece(piece)
+
+        self.board.check_win()
+
+    def __get_tile_type(self, piece: Piece):
+        adjacent_bombs = self.board.calculate_adjacent_bombs(piece)
+
+        if piece.flagged:
+            return 2, 0
+
+        if piece.clicked:
+            if piece.is_bomb:
+                return 6, 0
+            if adjacent_bombs > 0:
+                return adjacent_bombs - 1, 1
+            return 1, 0
+
+        if piece.is_bomb:
+            if self.board.has_won():
+                return 2, 0
+            if self.board.has_lost():
+                return 5, 0
+
+        return 0, 0

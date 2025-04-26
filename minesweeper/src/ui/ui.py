@@ -38,30 +38,44 @@ class UI:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     self.game.running = False
+                    continue
+
                 if event.type == pg.MOUSEBUTTONDOWN:
                     position = pg.mouse.get_pos()
+
                     if event.button == 1:
                         if self.game_view.title_bar.menu_button.is_clicked(position):
                             self.run_menu()
                             self.game.running = False
+                            continue
+
                         left_mouse_down = True
                         if right_mouse_down:
                             self.game_view.handle_click(position, "chord")
                             right_mouse_down = False
-                        else:
-                            self.game_view.handle_click(position, "reveal")
-                    elif event.button == 3:
+                            continue
+
+                        self.game_view.handle_click(position, "reveal")
+                        continue
+
+                    if event.button == 3:
                         right_mouse_down = True
                         if left_mouse_down:
                             self.game_view.handle_click(position, "chord")
                             left_mouse_down = False
-                        else:
-                            self.game_view.handle_click(position, "flag")
+                            continue
+
+                        self.game_view.handle_click(position, "flag")
+                        continue
+
                 if event.type == pg.MOUSEBUTTONUP:
                     if event.button == 1:
                         left_mouse_down = False
-                    elif event.button == 3:
+                        continue
+                    if event.button == 3:
                         right_mouse_down = False
+                        continue
+
             self.get_game_view(screen)
         pg.quit()
 

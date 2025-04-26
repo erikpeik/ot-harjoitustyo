@@ -31,11 +31,4 @@ class Button:
 
     def is_clicked(self, mouse_pos: tuple) -> bool:
         x, y = mouse_pos
-        if (
-            x >= self.pos[0]
-            and x <= self.pos[0] + self.width
-            and y >= self.pos[1]
-            and y <= self.pos[1] + self.height
-        ):
-            return True
-        return False
+        return self.pos[0] <= x <= self.pos[0] + self.width and self.pos[1] <= y <= self.pos[1] + self.height
