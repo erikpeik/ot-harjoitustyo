@@ -1,5 +1,23 @@
 # Arkkitehtuurikuvaus
 
+## Rakenne
+
+Koodin pakkausrakenne on seuraava:
+
+![Pakkauskaavio](./kuvat/pakkauskaavio.svg)
+
+Pakaus *ui* sisältää käyttöliittymän, *logic* joka sisältää pelilogiikan.
+services-pakkaus sisältää pelin tallennukseen liittyvän logiikan ja *repositories* tietojen pysyväistallennukseen vastaavan koodin.
+*entities*-pakkaus sisältää tyypit, joita käytetään pelin sisällä.
+
+## Käyttöliittymä
+
+Käyttöliittymä sisältää kolme näkymää:
+
+- Valikkonäkymä, jossa valitaan vaikeustaso
+- Pelinäkymä, jossa pelataan peliä
+- Tilastot-näkymä, jossa näytetään pelin tilastot
+
 ## Luokkakaavio
 
 ```mermaid
@@ -37,6 +55,10 @@ classDiagram
     Minesweeper "1" --> "1" Board
     Board "1" --> "*" Piece
 ```
+
+## Tietojen pysyväistallennus
+
+Pakkauksen *repositories* sisältää luokan `ResultRepository` joka vastaa pelin tilastojen tallentamisesta ja lataamisesta. Se käyttää SQLite-tietokantaa tietojen pysyväistallennukseen.
 
 ## Päätoiminnallisuudet
 
