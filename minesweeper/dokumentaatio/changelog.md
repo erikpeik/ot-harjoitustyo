@@ -20,3 +20,8 @@
 ## Viikko 5
 
 - Ei paljon aikaa koodata, mutta testailin pelin toimivuutta ja kirjoitin testejä
+
+## Viikko 6
+
+- Lisätty Sqlite tietokanta pelin tilastojen tallentamiseksi
+- Voitetut pelit tallennetaan tietokantaan
