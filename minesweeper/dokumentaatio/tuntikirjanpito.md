@@ -19,3 +19,6 @@
 | | 1 | Pelinäkymässä mahdolllisuus palata alkuvalikkoon |
 | 8.4. | 2 | Dokumentaation päivittelyä ja arkkitehtuuri Luokkakaavion tekoa |
 | 15.4 | 4 | Viime viikon feedbackin korjauksia ja testien kirjoittamista, dokumentaation päivittelyä. |
+| 26.4. | 1 | Koodikatselmoinnin korjausten tekeminen. |
+| 29.4. | 6 | Sqlite tietokannan luonti ja pelin tilastojen tallentaminen, sekä arkkitetuurin ja käyttöohjeiden päivittelyä |
+
