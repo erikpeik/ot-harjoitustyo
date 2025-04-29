@@ -1,5 +1,6 @@
 import os
 import pygame as pg
+from entities.difficulty import Difficulty
 from ui.frame import Frame
 from ui.button import Button
 
@@ -30,11 +31,11 @@ class Menu:
         self.medium_button.draw(self._screen)
         self.hard_button.draw(self._screen)
 
-    def button_is_clicked(self, mouse_pos: tuple) -> str:
+    def button_is_clicked(self, mouse_pos: tuple) -> Difficulty:
         if self.easy_button.is_clicked(mouse_pos):
-            return "easy"
-        elif self.medium_button.is_clicked(mouse_pos):
-            return "medium"
-        elif self.hard_button.is_clicked(mouse_pos):
-            return "hard"
+            return Difficulty.EASY
+        if self.medium_button.is_clicked(mouse_pos):
+            return Difficulty.MEDIUM
+        if self.hard_button.is_clicked(mouse_pos):
+            return Difficulty.HARD
         return None

@@ -28,7 +28,7 @@ class GameView:
         )
         self._number_board.draw(
             self.screen,
-            self.game.board.get_time(),
+            self.game.board.get_time_on_seconds(),
             (
                 self.game.frame_size[0] - 26 -
                 self._number_board.rendered_size[0] * 3,

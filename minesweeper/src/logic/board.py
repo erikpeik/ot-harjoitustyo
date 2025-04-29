@@ -4,9 +4,20 @@ import pygame as pg
 from logic.piece import Piece
 from logic.board_status import BoardStatus
 
+from entities.difficulty import Difficulty
+from services.result_service import result_service
+
 
 class Board:
-    def __init__(self, size: tuple, mines: int, tile_size: int, board_offset: tuple):
+    def __init__(
+        self,
+        size: tuple,
+        mines: int,
+        *,
+        tile_size: int,
+        board_offset: tuple,
+        difficulty: Difficulty
+    ):
         self.size = size
         self.mine_count = mines
         self.board = self.empty_board()
@@ -14,6 +25,7 @@ class Board:
         self.status = BoardStatus.NOT_STARTED
         self.offset = board_offset
         self.time_ticks = [0, 0]
+        self.difficulty = difficulty
 
     def empty_board(self):
         return [
@@ -142,11 +154,23 @@ class Board:
                     return False
         self.status = BoardStatus.WON
         self.time_ticks[1] = pg.time.get_ticks()
+        result_service.save_result(
+            self.get_time_on_ticks(),
+            self.difficulty,
+        )
+
         return True
 
-    def get_time(self):
+    def get_time_on_seconds(self) -> int:
         if self.time_ticks[0] == 0:
             return 0
         if not self.game_is_running():
             return (self.time_ticks[1] - self.time_ticks[0]) // 1000
         return (pg.time.get_ticks() - self.time_ticks[0]) // 1000
+
+    def get_time_on_ticks(self) -> int:
+        if self.time_ticks[0] == 0:
+            return 0
+        if not self.game_is_running():
+            return self.time_ticks[1] - self.time_ticks[0]
+        return pg.time.get_ticks() - self.time_ticks[0]

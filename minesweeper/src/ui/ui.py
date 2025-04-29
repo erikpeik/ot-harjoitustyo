@@ -1,5 +1,6 @@
 import pygame as pg
 from logic.minesweeper import Minesweeper
+from entities.difficulty import Difficulty
 from ui.gameview import GameView
 from ui.menu import Menu
 import os
@@ -20,14 +21,9 @@ class UI:
     def run(self):
         self.run_menu()
 
-    def run_game(self, difficulty: str):
+    def run_game(self, difficulty: Difficulty):
         self.current_scene = "game"
-        if difficulty == "easy":
-            self.game = Minesweeper((9, 9), 10)
-        elif difficulty == "medium":
-            self.game = Minesweeper((16, 16), 40)
-        elif difficulty == "hard":
-            self.game = Minesweeper((30, 16), 99)
+        self.game = Minesweeper(difficulty)
 
         screen = pg.display.set_mode(self.game.frame_size)
 

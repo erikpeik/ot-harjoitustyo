@@ -34,3 +34,7 @@ def format(ctx):
 @task
 def format_check(ctx):
     ctx.run("autopep8 --recursive --exit-code --diff src")
+
+@task
+def build(ctx):
+    ctx.run("python3 src/initialize_database.py")
