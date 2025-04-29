@@ -5,7 +5,7 @@ from ui.number_board import NumberBoard
 from ui.titlebar import TitleBar
 
 from logic.minesweeper import Minesweeper
-from logic.board_status import BoardStatus
+from entities.board_status import BoardStatus
 
 import pygame as pg
 

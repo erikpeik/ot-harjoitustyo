@@ -3,7 +3,16 @@ from entities.difficulty import Difficulty
 
 
 class Minesweeper:
+    """Luokka, joka hallitsee koko pelin logiikkaa.
+    """
+
     def __init__(self, difficulty: Difficulty, tile_size=32):
+        """Luokkan konstruktori, joka alustaa pelin.
+
+        Args:
+            difficulty (Difficulty): Pelin vaikeusaste.
+            tile_size (int): Laatan koko pikseleinä. Oletusarvo on 32.
+        """
         size = (0, 0)
         mines = 0
 
@@ -33,5 +42,7 @@ class Minesweeper:
         self.running = True
 
     def reset_game(self):
+        """Uudelleenkäynnistää pelin ja pelilaudan
+        """
         self.board.reset_board()
         self.running = True

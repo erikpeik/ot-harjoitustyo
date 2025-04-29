@@ -1,12 +1,16 @@
 import unittest
+
 from logic.board import Board
-from logic.board_status import BoardStatus
+from entities.board_status import BoardStatus
+from entities.difficulty import Difficulty
 
 
 class TestBoard(unittest.TestCase):
     def setUp(self):
-        self.board = Board((9, 9), 10, 32, (0, 0))
-        self.test_board = Board((9, 9), 10, 32, (0, 0))
+        self.board = Board((9, 9), 10, tile_size=32, board_offset=(
+            0, 0), difficulty=Difficulty.EASY)
+        self.test_board = Board((9, 9), 10, tile_size=32, board_offset=(
+            0, 0), difficulty=Difficulty.EASY)
         self.test_board.board[3][3].is_bomb = True
         self.test_board.board[3][4].is_bomb = True
         self.test_board.board[3][5].is_bomb = True
