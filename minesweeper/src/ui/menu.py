@@ -1,6 +1,7 @@
 import os
 import pygame as pg
 from entities.difficulty import Difficulty
+from ui.utils.draw_outline import draw_outline
 from ui.frame import Frame
 from ui.button import Button
 
@@ -10,16 +11,16 @@ class Menu:
         self._screen = screen
         self._background_color = (255, 255, 255)
         self._frame = Frame(screen, (800, 600), (0, 0))
-        self.easy_button = Button("Easy", (25, 100), 50, 250)
-        self.medium_button = Button("Medium", (25, 160), 50, 250)
-        self.hard_button = Button("Hard", (25, 220), 50, 250)
+        self.easy_button = Button("Easy", (25, 100), 50, 250, 4)
+        self.medium_button = Button("Medium", (25, 160), 50, 250, 4)
+        self.hard_button = Button("Hard", (25, 220), 50, 250, 4)
         self.font_path = os.path.join(
             "src", "assets", "fonts", "Perfect DOS VGA 437.ttf"
         )
 
     def draw(self):
         self._screen.fill(self._frame.gray_color)
-        self._frame.draw_outline((0, 0), (300, 300), False)
+        draw_outline((0, 0), (300, 300), self._screen, False)
 
         # write the title
         font = pg.font.Font(self.font_path, 30)
