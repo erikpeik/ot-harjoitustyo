@@ -51,13 +51,9 @@ class GameView:
             self.game.board.time_ticks[0] = pg.time.get_ticks()
 
         if self.game.board.status == BoardStatus.RUNNING:
-            top_left = self.game.board_offset
-            for row in self.game.board.get_board():
-                for piece in row:
-                    self.tile.handle_click(position, top_left, piece, action)
-                    top_left = (top_left[0], top_left[1] + self.game.tile_size)
-                top_left = (
-                    top_left[0] + self.game.tile_size,
-                    self.game.board_offset[1],
-                )
+
+            for row_idx, row in enumerate(self.game.board.get_board()):
+                for col_idx, piece in enumerate(row):
+                    self.tile.handle_click(
+                        position, (row_idx, col_idx), piece, action)
         self._start_face.handle_click(position)

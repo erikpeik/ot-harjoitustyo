@@ -79,4 +79,3 @@ sequenceDiagram
     UI->>GameView: draw()
 
 ```
-

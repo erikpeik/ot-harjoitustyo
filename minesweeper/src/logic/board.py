@@ -174,6 +174,12 @@ class Board:
                 if piece.is_bomb:
                     self.end_game()
 
+    def end_game(self):
+        """Asettaa pelin tilan pelin päättymiseksi ja ottaa ajan talteen.
+        """
+        self.status = BoardStatus.GAME_OVER
+        self.time_ticks[1] = pg.time.get_ticks()
+
     def has_started(self):
         """Tarkistaa, onko peli aloitettu pelin tilasta.
 
@@ -181,10 +187,6 @@ class Board:
             bool: False, jos peli ei ole aloitettu, muuten True.
         """
         return self.status != BoardStatus.NOT_STARTED
-
-    def end_game(self):
-        self.status = BoardStatus.GAME_OVER
-        self.time_ticks[1] = pg.time.get_ticks()
 
     def has_lost(self):
         """Tarkistaa, onko peli hävitty pelin tilasta.
