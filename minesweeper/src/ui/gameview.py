@@ -46,12 +46,9 @@ class GameView:
 
     def handle_click(self, position: tuple, action: str):
         if not self.game.board.has_started():
-            self.game.board.place_bombs(position)
-            self.game.board.status = BoardStatus.RUNNING
-            self.game.board.time_ticks[0] = pg.time.get_ticks()
+            self.game.start_game(position)
 
         if self.game.board.status == BoardStatus.RUNNING:
-
             for row_idx, row in enumerate(self.game.board.get_board()):
                 for col_idx, piece in enumerate(row):
                     self.tile.handle_click(

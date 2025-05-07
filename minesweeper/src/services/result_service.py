@@ -1,4 +1,5 @@
 from entities.difficulty import Difficulty
+from entities.result import Result
 from repositories.result_repository import (
     result_repository as default_result_repository)
 
@@ -13,8 +14,8 @@ class ResultService:
     def get_results_by_difficulty(self, difficulty: Difficulty):
         return self._result_repository.find_by_difficulty(difficulty)
 
-    def save_result(self, run_time: int, difficulty: Difficulty):
-        self._result_repository.save_result(run_time, difficulty)
+    def save_result(self, result: Result):
+        self._result_repository.save_result(result)
 
 
 result_service = ResultService()

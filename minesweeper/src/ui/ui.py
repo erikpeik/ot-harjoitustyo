@@ -1,9 +1,11 @@
 import pygame as pg
+import os
+
 from logic.minesweeper import Minesweeper
 from entities.difficulty import Difficulty
 from ui.gameview import GameView
 from ui.menu import Menu
-import os
+from ui.stats import Stats
 
 
 class UI:
@@ -13,6 +15,7 @@ class UI:
         self.current_scene = "game"
         self.game = None
         self.menu = None
+        self.stats = None
         self.screensize = ()
         self.game_view = None
         self.clock = pg.time.Clock()
@@ -29,6 +32,8 @@ class UI:
 
         left_mouse_down = False
         right_mouse_down = False
+
+        self.game_view = GameView(self.game, screen)
 
         while self.game.running:
             for event in pg.event.get():
@@ -72,17 +77,19 @@ class UI:
                         right_mouse_down = False
                         continue
 
-            self.get_game_view(screen)
+            self.get_game_view()
         pg.quit()
 
     def run_menu(self):
         self.current_scene = "menu"
 
-        screen = pg.display.set_mode((300, 300))
+        size = (300, 400)
+
+        screen = pg.display.set_mode(size)
         pg.display.set_caption("Minesweeper")
         screen.fill((0, 0, 0))
         running = True
-
+        self.menu = Menu(screen)
         while running:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
@@ -90,21 +97,42 @@ class UI:
                 if event.type == pg.MOUSEBUTTONDOWN:
                     # check if the mouse is clicked on the button
                     isclicked = self.menu.button_is_clicked(pg.mouse.get_pos())
-                    if isclicked:
+                    if isclicked == "stats":
+                        self.run_stats()
+                        running = False
+                        continue
+                    if isclicked is not None:
                         self.run_game(isclicked)
                         running = False
 
-            self.get_menu_view(screen)
+            self.get_menu_view()
         pg.quit()
 
-    def get_game_view(self, screen):
-        self.game_view = GameView(self.game, screen)
+    def run_stats(self):
+        self.current_scene = "stats"
+        screen = pg.display.set_mode((500, 400))
+
+        running = True
+        self.stats = Stats(screen)
+        while running:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    running = False
+            self.get_stats_view()
+
+        pg.quit()
+
+    def get_game_view(self):
         self.game_view.draw()
         self.clock.tick(60)
         pg.display.flip()
 
-    def get_menu_view(self, screen):
-        self.menu = Menu(screen)
+    def get_menu_view(self):
         self.menu.draw()
+        self.clock.tick(60)
+        pg.display.flip()
+
+    def get_stats_view(self):
+        self.stats.draw()
         self.clock.tick(60)
         pg.display.flip()

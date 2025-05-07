@@ -5,6 +5,7 @@ from logic.piece import Piece
 
 from entities.difficulty import Difficulty
 from entities.board_status import BoardStatus
+from entities.result import Result
 
 from services.result_service import result_service
 
@@ -180,6 +181,14 @@ class Board:
         self.status = BoardStatus.GAME_OVER
         self.time_ticks[1] = pg.time.get_ticks()
 
+        result_service.save_result(
+            Result(
+                difficulty=self.difficulty,
+                time=self.get_time_on_ticks(),
+                won=False,
+            )
+        )
+
     def has_started(self):
         """Tarkistaa, onko peli aloitettu pelin tilasta.
 
@@ -245,9 +254,13 @@ class Board:
                     return False
         self.status = BoardStatus.WON
         self.time_ticks[1] = pg.time.get_ticks()
+
         result_service.save_result(
-            self.get_time_on_ticks(),
-            self.difficulty,
+            Result(
+                difficulty=self.difficulty,
+                time=self.get_time_on_ticks(),
+                won=True,
+            )
         )
 
         return True

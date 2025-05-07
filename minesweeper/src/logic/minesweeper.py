@@ -1,5 +1,7 @@
+import pygame as pg
 from logic.board import Board
 from entities.difficulty import Difficulty
+from entities.board_status import BoardStatus
 
 
 class Minesweeper:
@@ -46,3 +48,8 @@ class Minesweeper:
         """
         self.board.reset_board()
         self.running = True
+
+    def start_game(self, position: tuple):
+        self.board.place_bombs(position)
+        self.board.status = BoardStatus.RUNNING
+        self.board.time_ticks[0] = pg.time.get_ticks()

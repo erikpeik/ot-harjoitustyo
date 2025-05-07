@@ -1,4 +1,3 @@
-from datetime import datetime
 from database_connection import get_database_connection
 from entities.difficulty import Difficulty
 from entities.result import Result
@@ -6,6 +5,8 @@ from entities.result import Result
 
 def get_result_by_row(row):
     return Result(
+        result_id=row["id"],
+        won=row["won"] == 1,
         time=row["time"],
         difficulty=row["difficulty"],
         date=row["date"]
@@ -29,10 +30,14 @@ class ResultRepository:
         rows = cursor.fetchall()
         return list(map(get_result_by_row, rows))
 
-    def save_result(self, run_time: int, difficulty: Difficulty):
+    def save_result(self, result: Result):
         cursor = self._connection.cursor()
-        cursor.execute('INSERT INTO results (time, difficulty, date) VALUES (?, ?, ?)',
-                       (run_time, difficulty.value, datetime.now().isoformat()))
+        cursor.execute('INSERT INTO results (difficulty, won, time, date) VALUES (?, ?, ?, ?)',
+                       (result.difficulty.value,
+                        str(result.won).upper(),
+                        result.time,
+                        result.date,
+                        ))
         self._connection.commit()
 
     def delete_all(self):

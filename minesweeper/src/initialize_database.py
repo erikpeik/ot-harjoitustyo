@@ -19,6 +19,7 @@ def create_tables(connection):
             id integer primary key autoincrement,
             time integer not null,
             difficulty integer not null,
+            won integer not null default 0,
             date text not null
         );
     ''')
