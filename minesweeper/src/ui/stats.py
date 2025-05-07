@@ -43,8 +43,8 @@ class Stats:
             f"Total wins: {self._stats['total_wins']}",
             f"Total losses: {self._stats['total_losses']}",
             f"Winrate: {self._stats['winrate']:.2f}%",
-            f"Top time (EASY): {self._stats['best_result_won'].time:.2f}s" if self._stats[
-                'best_result_won'] else "Top time (EASY): N/A",
+            f"Top time (EASY): {self._stats['best_result_easy'].time:.2f}s" if self._stats[
+                'best_result_easy'] else "Top time (EASY): N/A",
             f"Top time (MEDIUM): {self._stats['best_result_medium'].time:.2f}s" if self._stats[
                 'best_result_medium'] else "Top time (MEDIUM): N/A",
             f"Top time (HARD): {self._stats['best_result_hard'].time:.2f}s" if self._stats[

@@ -1,7 +1,7 @@
-from entities.difficulty import Difficulty
-from entities.result import Result
 from repositories.result_repository import (
     result_repository as default_result_repository)
+from entities.result import Result
+from entities.difficulty import Difficulty
 
 
 class ResultService:
@@ -20,17 +20,6 @@ class ResultService:
 
         return self._result_repository.find_all()
 
-    def get_results_by_difficulty(self, difficulty: Difficulty) -> list[Result]:
-        """Hakee kaikki tulokset tietokannasta vaikeusasteen mukaan.
-
-        Args:
-            difficulty (Difficulty): Vaikeusaste, jonka mukaan tulokset haetaan.
-
-        Returns:
-            list[Result]: Tulokset, jotka vastaavat annettua vaikeusastetta.
-        """
-        return self._result_repository.find_by_difficulty(difficulty)
-
     def save_result(self, result: Result):
         """Tallentaa tuloksen tietokantaan.
 
@@ -46,8 +35,6 @@ class ResultService:
             dict: Pelin tilastot, kuten voitot, häviöt ja voittoprosentti.
         """
         results = self.get_results()
-        for result in results:
-            print(result.difficulty, result.won, result.time, result.date)
 
         total_games = len(results)
         total_wins = len([result for result in results if result.won])
@@ -75,7 +62,7 @@ class ResultService:
             "total_wins": total_wins,
             "total_losses": total_losses,
             "winrate": winrate,
-            "best_result_won": best_easy_result,
+            "best_result_easy": best_easy_result,
             "best_result_medium": best_medium_result,
             "best_result_hard": best_hard_result,
         }

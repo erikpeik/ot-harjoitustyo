@@ -11,10 +11,16 @@ class TestBoard(unittest.TestCase):
             0, 0), difficulty=Difficulty.EASY)
         self.test_board = Board((9, 9), 10, tile_size=32, board_offset=(
             0, 0), difficulty=Difficulty.EASY)
-        self.test_board.board[3][3].is_bomb = True
-        self.test_board.board[3][4].is_bomb = True
-        self.test_board.board[3][5].is_bomb = True
-        self.test_board.board[4][3].is_bomb = True
+        self.test_board.board[0][6].is_bomb = True
+        self.test_board.board[1][1].is_bomb = True
+        self.test_board.board[2][2].is_bomb = True
+        self.test_board.board[3][7].is_bomb = True
+        self.test_board.board[4][4].is_bomb = True
+        self.test_board.board[6][2].is_bomb = True
+        self.test_board.board[6][4].is_bomb = True
+        self.test_board.board[6][8].is_bomb = True
+        self.test_board.board[7][7].is_bomb = True
+        self.test_board.board[8][3].is_bomb = True
 
     def test_bomb_is_placed(self):
         self.board.place_bombs((0, 0))
@@ -27,8 +33,16 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board, self.board.board)
 
     def test_calculate_adjacent_bombs(self):
-        piece = self.test_board.get_board()[4][4]
-        adjacent_bombs = self.test_board.calculate_adjacent_bombs(piece)
+        board = Board((9, 9), 10, tile_size=32, board_offset=(
+            0, 0), difficulty=Difficulty.EASY)
+
+        board.board[3][3].is_bomb = True
+        board.board[3][4].is_bomb = True
+        board.board[3][5].is_bomb = True
+        board.board[4][3].is_bomb = True
+
+        piece = board.get_board()[4][4]
+        adjacent_bombs = board.calculate_adjacent_bombs(piece)
 
         self.assertEqual(adjacent_bombs, 4)
 
@@ -44,9 +58,28 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(self.board.status, BoardStatus.GAME_OVER)
 
     def test_check_win_condition(self):
-        self.assertFalse(self.test_board.check_win())
-        for row in self.test_board.get_board():
+        self.assertFalse(self.board.check_win())
+        for row in self.board.get_board():
             for piece in row:
                 if not piece.is_bomb:
                     piece.clicked = True
-        self.assertTrue(self.test_board.check_win())
+        self.assertTrue(self.board.check_win())
+
+    def test_revealing_tiles(self):
+        self.test_board.reveal_empty_tiles(self.test_board.get_board()[1][4])
+        self.assertTrue(self.test_board.get_board()[0][4].clicked)
+        self.assertTrue(self.test_board.get_board()[0][3].clicked)
+        self.assertTrue(self.test_board.get_board()[2][4].clicked)
+        self.assertTrue(self.test_board.get_board()[2][5].clicked)
+
+    def test_chord_piece(self):
+        self.test_board.get_board()[1][5].clicked = True
+        self.test_board.get_board()[0][6].flagged = True
+        self.test_board.chord_piece(self.test_board.get_board()[1][5])
+        self.assertTrue(self.test_board.get_board()[0][5].clicked)
+        self.assertTrue(self.test_board.get_board()[0][4].clicked)
+        self.assertTrue(self.test_board.get_board()[1][4].clicked)
+        self.assertTrue(self.test_board.get_board()[1][6].clicked)
+        self.assertTrue(self.test_board.get_board()[2][5].clicked)
+        self.assertTrue(self.test_board.get_board()[2][4].clicked)
+        self.assertTrue(self.test_board.get_board()[2][6].clicked)

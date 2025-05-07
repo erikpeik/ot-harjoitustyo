@@ -7,7 +7,7 @@ from entities.difficulty import Difficulty
 
 class TestMinesweeper(unittest.TestCase):
     def setUp(self):
-        self.minesweeper = Minesweeper(Difficulty.EASY, 32)
+        self.minesweeper = Minesweeper(Difficulty.EASY)
 
     def test_reset_game_calls_reset_board(self):
         self.minesweeper.board.reset_board = unittest.mock.Mock()

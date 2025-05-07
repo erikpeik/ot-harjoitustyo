@@ -45,21 +45,6 @@ class ResultRepository:
         rows = cursor.fetchall()
         return list(map(get_result_by_row, rows))
 
-    def find_by_difficulty(self, difficulty: Difficulty) -> list[Result]:
-        """Hakee kaikki tulokset tietokannasta vaikeusasteen mukaan.
-
-        Args:
-            difficulty (Difficulty): Vaikeusaste, jonka mukaan tulokset haetaan.
-
-        Returns:
-            list[Result]: Tulokset, jotka vastaavat annettua vaikeusastetta.
-        """
-        cursor = self._connection.cursor()
-        cursor.execute(
-            'SELECT * FROM results WHERE difficulty = ?', (difficulty.value,))
-        rows = cursor.fetchall()
-        return list(map(get_result_by_row, rows))
-
     def save_result(self, result: Result):
         """Tallentaa tuloksen tietokantaan.
 
