@@ -5,19 +5,46 @@ from repositories.result_repository import (
 
 
 class ResultService:
+    """Luokka, joka hallitsee pelin tuloksia ja niiden käsittelyä.
+    """
+
     def __init__(self, result_repository=default_result_repository):
         self._result_repository = result_repository
 
-    def get_results(self):
+    def get_results(self) -> list[Result]:
+        """Hakee kaikki tulokset tietokannasta.
+
+        Returns:
+            list[Result]: Kaikki tulokset tietokannasta.
+        """
+
         return self._result_repository.find_all()
 
-    def get_results_by_difficulty(self, difficulty: Difficulty):
+    def get_results_by_difficulty(self, difficulty: Difficulty) -> list[Result]:
+        """Hakee kaikki tulokset tietokannasta vaikeusasteen mukaan.
+
+        Args:
+            difficulty (Difficulty): Vaikeusaste, jonka mukaan tulokset haetaan.
+
+        Returns:
+            list[Result]: Tulokset, jotka vastaavat annettua vaikeusastetta.
+        """
         return self._result_repository.find_by_difficulty(difficulty)
 
     def save_result(self, result: Result):
+        """Tallentaa tuloksen tietokantaan.
+
+        Args:
+            result (Result): Tallennettava tulos.
+        """
         self._result_repository.save_result(result)
 
-    def get_stats(self):
+    def get_stats(self) -> dict:
+        """Laskee pelin tilastot ja palauttaa ne sanakirjana.
+
+        Returns:
+            dict: Pelin tilastot, kuten voitot, häviöt ja voittoprosentti.
+        """
         results = self.get_results()
         for result in results:
             print(result.difficulty, result.won, result.time, result.date)

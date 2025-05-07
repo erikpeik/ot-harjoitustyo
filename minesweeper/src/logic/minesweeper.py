@@ -50,6 +50,10 @@ class Minesweeper:
         self.running = True
 
     def start_game(self, position: tuple):
+        """Laitttaa pelin käyntiin ja asettaa pommit pelilaudalle.
+        Args:
+            position (tuple): Klikattu sijainnti ruudulla.
+        """
         self.board.place_bombs(position)
         self.board.status = BoardStatus.RUNNING
         self.board.time_ticks[0] = pg.time.get_ticks()
