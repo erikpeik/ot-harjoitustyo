@@ -14,11 +14,11 @@ class GameView:
     def __init__(self, game: Minesweeper, screen):
         self.game = game
         self.screen = screen
+        self.title_bar = TitleBar(screen.get_size())
         self.tile = Tile(game.board, game.tile_size)
         self.frame = Frame(screen, game.frame_size, game.board_offset)
         self._start_face = StartFace(game.board, game.frame_size)
         self._number_board = NumberBoard()
-        self.title_bar = TitleBar(screen.get_size())
 
     def draw(self):
         self.frame.draw_frame()

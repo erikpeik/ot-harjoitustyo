@@ -28,18 +28,18 @@ class ResultService:
         winrate = (total_wins / total_games) * 100 if total_games else 0
 
         best_easy_result = min(
-            [result for result in results if result.difficulty ==
-                Difficulty.EASY and result.won],
+            (result for result in results if result.difficulty ==
+                Difficulty.EASY and result.won),
             key=lambda x: x.time, default=None
         )
         best_medium_result = min(
-            [result for result in results if result.difficulty ==
-                Difficulty.MEDIUM and result.won],
+            (result for result in results if result.difficulty ==
+                Difficulty.MEDIUM and result.won),
             key=lambda x: x.time, default=None
         )
         best_hard_result = min(
-            [result for result in results if result.difficulty ==
-                Difficulty.HARD and result.won],
+            (result for result in results if result.difficulty ==
+                Difficulty.HARD and result.won),
             key=lambda x: x.time, default=None
         )
 

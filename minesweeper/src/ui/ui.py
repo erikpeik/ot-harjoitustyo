@@ -1,5 +1,5 @@
-import pygame as pg
 import os
+import pygame as pg
 
 from logic.minesweeper import Minesweeper
 from entities.difficulty import Difficulty
@@ -12,20 +12,18 @@ class UI:
     def __init__(self):
         pg.init()
         pg.display.set_caption("Minesweeper")
-        self.current_scene = "game"
+        os.environ["SDL_VIDEO_CENTERED"] = "1"
+
         self.game = None
         self.menu = None
         self.stats = None
-        self.screensize = ()
         self.game_view = None
         self.clock = pg.time.Clock()
-        os.environ["SDL_VIDEO_CENTERED"] = "1"
 
     def run(self):
         self.run_menu()
 
     def run_game(self, difficulty: Difficulty):
-        self.current_scene = "game"
         self.game = Minesweeper(difficulty)
 
         screen = pg.display.set_mode(self.game.frame_size)
@@ -77,16 +75,14 @@ class UI:
                         right_mouse_down = False
                         continue
 
-            self.get_game_view()
+            self.game_view.draw()
+            self.clock.tick(60)
+            pg.display.flip()
         pg.quit()
 
     def run_menu(self):
-        self.current_scene = "menu"
-
         size = (300, 400)
-
         screen = pg.display.set_mode(size)
-        pg.display.set_caption("Minesweeper")
         screen.fill((0, 0, 0))
         running = True
         self.menu = Menu(screen)
@@ -103,12 +99,12 @@ class UI:
                     if isclicked is not None:
                         self.run_game(isclicked)
                         running = False
-
-            self.get_menu_view()
+            self.menu.draw()
+            self.clock.tick(60)
+            pg.display.flip()
         pg.quit()
 
     def run_stats(self):
-        self.current_scene = "stats"
         screen = pg.display.set_mode((550, 350))
 
         running = True
@@ -125,21 +121,7 @@ class UI:
                             self.run_menu()
                             running = False
                             continue
-            self.get_stats_view()
-
+            self.stats.draw()
+            self.clock.tick(60)
+            pg.display.flip()
         pg.quit()
-
-    def get_game_view(self):
-        self.game_view.draw()
-        self.clock.tick(60)
-        pg.display.flip()
-
-    def get_menu_view(self):
-        self.menu.draw()
-        self.clock.tick(60)
-        pg.display.flip()
-
-    def get_stats_view(self):
-        self.stats.draw()
-        self.clock.tick(60)
-        pg.display.flip()

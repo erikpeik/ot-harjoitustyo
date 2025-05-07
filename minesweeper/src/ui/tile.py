@@ -4,48 +4,48 @@ from logic.board import Board
 
 
 class Tile:
-    def __init__(self, board: Board, tile_size):
-        self.sprite_sheet = pg.image.load("src/assets/tiles.png")
-        self.tile_size = 16
-        self.rendered_size = tile_size
-        self.board = board
+    def __init__(self, board: Board, tile_size=16):
+        self._sprite_sheet = pg.image.load("src/assets/tiles.png")
+        self._tile_size = 16
+        self._rendered_size = tile_size
+        self._board = board
 
     def get_tile(self, piece: Piece):
         x, y = self.__get_tile_type(piece)
-        tile = self.sprite_sheet.subsurface(
+        tile = self._sprite_sheet.subsurface(
             pg.Rect(
-                x * self.tile_size,
-                y * self.tile_size,
-                self.tile_size,
-                self.tile_size,
+                x * self._tile_size,
+                y * self._tile_size,
+                self._tile_size,
+                self._tile_size,
             )
         )
-        return pg.transform.scale(tile, (self.rendered_size, self.rendered_size))
+        return pg.transform.scale(tile, (self._rendered_size, self._rendered_size))
 
     def draw(self, screen, top_left, piece: Piece):
         tile = self.get_tile(piece)
         screen.blit(tile, top_left)
 
     def handle_click(self, mouse_pos: tuple, top_left: tuple, piece: Piece, action):
-        if not self.board.is_clicked_position(mouse_pos, top_left):
+        if not self._board.is_clicked_position(mouse_pos, top_left):
             return
 
         if action == "reveal":
             if piece.is_bomb:
                 piece.reveal()
-                self.board.end_game()
+                self._board.end_game()
                 return
             piece.reveal()
-            self.board.reveal_empty_tiles(piece)
+            self._board.reveal_empty_tiles(piece)
         elif action == "flag":
             piece.flag_piece()
         elif action == "chord":
-            self.board.chord_piece(piece)
+            self._board.chord_piece(piece)
 
-        self.board.check_win()
+        self._board.check_win()
 
     def __get_tile_type(self, piece: Piece):
-        adjacent_bombs = self.board.calculate_adjacent_bombs(piece)
+        adjacent_bombs = self._board.calculate_adjacent_bombs(piece)
 
         if piece.flagged:
             return 2, 0
@@ -58,9 +58,9 @@ class Tile:
             return 1, 0
 
         if piece.is_bomb:
-            if self.board.has_won():
+            if self._board.has_won():
                 return 2, 0
-            if self.board.has_lost():
+            if self._board.has_lost():
                 return 5, 0
 
         return 0, 0
