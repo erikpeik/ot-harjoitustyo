@@ -27,7 +27,6 @@ class Menu:
         self._screen.fill(self._frame.gray_color)
         draw_outline((0, 0), self._size, self._screen, False)
 
-        # write the title
         font = pg.font.Font(self.font_path, 24)
         title = font.render("MINESWEEPER", True, (0, 0, 0))
         title_highlight = font.render("MINESWEEPER", True, (100, 100, 100))

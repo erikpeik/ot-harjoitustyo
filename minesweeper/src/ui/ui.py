@@ -95,7 +95,6 @@ class UI:
                 if event.type == pg.QUIT:
                     running = False
                 if event.type == pg.MOUSEBUTTONDOWN:
-                    # check if the mouse is clicked on the button
                     isclicked = self.menu.button_is_clicked(pg.mouse.get_pos())
                     if isclicked == "stats":
                         self.run_stats()
@@ -110,7 +109,7 @@ class UI:
 
     def run_stats(self):
         self.current_scene = "stats"
-        screen = pg.display.set_mode((500, 400))
+        screen = pg.display.set_mode((550, 350))
 
         running = True
         self.stats = Stats(screen)
@@ -118,6 +117,14 @@ class UI:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     running = False
+                if event.type == pg.MOUSEBUTTONDOWN:
+                    isclicked = self.stats.button_is_clicked(
+                        pg.mouse.get_pos())
+                    if isclicked:
+                        if isclicked == "back":
+                            self.run_menu()
+                            running = False
+                            continue
             self.get_stats_view()
 
         pg.quit()

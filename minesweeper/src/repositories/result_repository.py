@@ -7,8 +7,8 @@ def get_result_by_row(row):
     return Result(
         result_id=row["id"],
         won=row["won"] == 1,
-        time=row["time"],
-        difficulty=row["difficulty"],
+        time=row["time"] / 1000,
+        difficulty=Difficulty(row["difficulty"]),
         date=row["date"]
     ) if row else None
 
@@ -17,7 +17,7 @@ class ResultRepository:
     def __init__(self, connection):
         self._connection = connection
 
-    def find_all(self):
+    def find_all(self) -> list[Result]:
         cursor = self._connection.cursor()
         cursor.execute('SELECT * FROM results')
         rows = cursor.fetchall()
@@ -34,7 +34,7 @@ class ResultRepository:
         cursor = self._connection.cursor()
         cursor.execute('INSERT INTO results (difficulty, won, time, date) VALUES (?, ?, ?, ?)',
                        (result.difficulty.value,
-                        str(result.won).upper(),
+                        1 if result.won else 0,
                         result.time,
                         result.date,
                         ))
