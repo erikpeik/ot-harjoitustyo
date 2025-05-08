@@ -4,28 +4,40 @@
 
 Sovelluksen avulla käyttäjän on mahdollista pelata miinaharavaa, jossa tehtävänä on paljasta ruudukon ruutuja ja vältellä miinoja.
 
+Inspiraatiota käyttöliittymästä otettu [Windows 98:n Miinaharavasta](https://minesweepergame.com/download/windows-98-minesweeper.php)
+
+![Minesweeper 98](https://minesweepergame.com/download/windows-98-minesweeper.png)
+
 ## Peruversion tarjoama toiminnallisuus
 
-- [x] Käyttäjä voi pelata miinaharavaa.
-- [x] Tarjolla kolme eri vaikeustasoa:
-  - [x] **Helppo**: 9x9 ruudukko, 10 miinaa.
-  - [x] **Keskitaso**: 16x16 ruudukko, 40 miinaa.
-  - [x] **Vaikea**: 16x30 ruudukko, 99 miinaa.
-- [ ] Tulokset tallennetaan leaderboardiin.
-- [ ] Käyttäjä voi tarkastella omia tuloksiaan leaderboardista.
-- [x] Peliajan ja löydettyjen miinojen laskenta.
-- [x] Miinojen liputtaminen oikealla hiirenpainikkeella.
-- [x] Pelaaja voi klikata ruutuja paljastaakseen ne.
-- [x] Ruutuun ilmestyy luku, joka kertoo kuinka monta miinaa ruudun ympärillä on.
-- [x] Peli päättyy, jos pelaaja paljastaa miinan.
-- [x] Peli päättyy, jos pelaaja paljastaa kaikki ruudut, jotka eivät sisällä miinaa.
+- Käyttäjä voi pelata miinaharavaa.
+- Tarjolla kolme eri vaikeustasoa:
+  - **Helppo**: 9x9 ruudukko, 10 miinaa.
+  - **Keskitaso**: 16x16 ruudukko, 40 miinaa.
+  - **Vaikea**: 16x30 ruudukko, 99 miinaa.
+- Pelit tallentuvat tietokantaan.
+- Käyttäjä voi tarkastella omia statistiikoitaan, kuten:
+  - Pelien määrä
+  - Voittojen määrä
+  - Häviöiden määrä
+  - Keskimääräinen peliaika
+  - Nopein voitto vaikeusasteittain
+- Peliajan ja löydettyjen miinojen laskenta.
+- Miinojen liputtaminen oikealla hiirenpainikkeella.
+- Pelaaja voi klikata ruutuja paljastaakseen ne.
+- Ruutuun ilmestyy luku, joka kertoo kuinka monta miinaa ruudun ympärillä on.
+- Peli päättyy, jos pelaaja paljastaa miinan.
+- Peli päättyy, jos pelaaja paljastaa kaikki ruudut, jotka eivät sisällä miinaa.
+- Vasen + oikea -klikkaus
+  - Jos pelaaja on jo paljastanut ruudun ja sen ympärillä on täsmälleen oikea määrä liputettuja miinoja, ruutua voi klikata samanaikaisesti vasemmalla ja oikealla hiiren painikkeella.
+  - Tämä paljastaa automaattisesti kaikki muut ympäröivät ruudut, jotka eivät ole liputettuja.
+  - Mikäli liputus oli virheellinen ja miina paljastuu, peli päättyy.
 
 ## Jatkokehitysideoita
 
-- [ ] Muokattavat vaikeustasot
+Ideioita jatkokehitykselle ja lisätoiminnallisuuksille:
+
+- Muokattavat vaikeustasot
   - Käyttäjä voi valita ruudukon koon ja miinojen määrän
-- [ ] Mahdollisuus asettaa aikarajoitusta
-- [x] Left + Right -klikkaus
-  - Jos pelaaja on jo paljastanut ruudun ja sen ympäriltä löytyy oikea määrä liputettuja miinoja, pelaaja voi klikata ruutua samanaikaisesti vasemmalla ja oikealla hiirenpainikkeella
-  - Tämä avaa kaikki muut ympäröivät ruudut automaattisesti, jos ne eivät sisällä miinaa.
-  - Jos liputus oli virheellinen, miina voi paljastua ja peli päättyy.
+- Mahdollisuus asettaa aikarajoitusta
+- Tulostaulukko kaikista peleistä
