@@ -14,6 +14,7 @@ Tämän sovelluksen avulla voit pelata **miinaharavaa**. Sovellus on toteutettu 
 ## Releases
 
 - [Viikko 5](https://github.com/erikpeik/ot-harjoitustyo/releases/tag/viikko5)
+- [Loppupalautus](https://github.com/erikpeik/ot-harjoitustyo/releases/tag/loppupalautus)
 
 ## Asennus
 
