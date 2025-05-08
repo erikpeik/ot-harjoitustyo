@@ -21,3 +21,9 @@
 | 15.4 | 4 | Viime viikon feedbackin korjauksia ja testien kirjoittamista, dokumentaation päivittelyä. |
 | 26.4. | 1 | Koodikatselmoinnin korjausten tekeminen. |
 | 29.4. | 6 | Sqlite tietokannan luonti ja pelin tilastojen tallentaminen, sekä arkkitetuurin ja käyttöohjeiden päivittelyä |
+| 7.5. | 4 | Pelin voitettujen ja hävittyjen pelien tellentelu tietokantaan. |
+| | 2 | Statistiikan näyttäminen ruudulla. |
+| | 1 | Docstringien lisääminen ja koodin siistiminen. |
+| | 3 | Testikattavuuden parantaminen ja testien kirjoittaminen. |
+| 8.5. | 5 | Dokumentaation viimeistelyä ja viimeisen bugin korjaaminen. |
+| Yhteensä | 61 |  |

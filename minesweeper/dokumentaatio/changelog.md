@@ -25,3 +25,10 @@
 
 - Lisätty Sqlite tietokanta pelin tilastojen tallentamiseksi
 - Voitetut pelit tallennetaan tietokantaan
+
+## Viikko 7
+
+- Muutoksia pelien voitettujen ja hävittyjen pelien tallentamiseen tietokantaan
+- Peleistä lasketaan tilastot ja ne näytetään pelinäkymässä
+- Testikattavuuden parantaminen ja testien kirjoittaminen
+- Yleisellä tasolla testailtu pelin toimivuutta ja bugien korjaamista
