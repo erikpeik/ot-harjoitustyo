@@ -12,7 +12,6 @@ import pygame as pg
 
 class GameView:
     """Pelilautanäkymä, joka hallitsee pelin käyttöliittymää.
-
     """
 
     def __init__(self, game: Minesweeper, screen):
