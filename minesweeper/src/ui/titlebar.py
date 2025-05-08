@@ -3,6 +3,9 @@ from ui.button import Button
 
 
 class TitleBar:
+    """GameViewin yläosa, jossa näppäin takaisin alkuvalikkoon.
+    """
+
     def __init__(self, screen_size: tuple):
         self._screen_size = screen_size
         self._bar_height = 30

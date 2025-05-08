@@ -8,6 +8,11 @@ from services.result_service import result_service
 
 
 class Stats:
+    """Pelin tilastot, joka näyttää pelin tilastotiedot.
+
+    Tämä luokka hallitsee pelin tilastojen näyttämistä ja piirtämistä.
+    """
+
     def __init__(self, screen):
         self._screen = screen
         self._screen_size = screen.get_size()

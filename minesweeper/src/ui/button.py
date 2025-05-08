@@ -5,6 +5,9 @@ from ui.utils.draw_outline import draw_outline
 
 
 class Button:
+    """Pelin painike, joka hallitsee pelin painikkeiden piirtämistä ja klikkaamista.
+    """
+
     def __init__(self,
                  label: str,
                  pos: tuple,

@@ -3,6 +3,9 @@ from ui.utils.draw_outline import draw_outline
 
 
 class Frame:
+    """Pelilautan kehys, joka hallitsee pelin kehystä ja sen piirtämistä.
+    """
+
     def __init__(self, screen, frame_size, board_offset):
         self.white_color = (255, 255, 255)
         self.gray_color = (192, 192, 192)

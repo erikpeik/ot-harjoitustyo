@@ -2,6 +2,9 @@ import pygame as pg
 
 
 class NumberBoard:
+    """Luokka, joka hallitsee numeroiden piirtämistä pelilaudalle.
+    """
+
     def __init__(self):
         self._sprite_sheet = pg.image.load("src/assets/numbers.png")
         self._number_size = (13, 23)

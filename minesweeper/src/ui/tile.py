@@ -4,6 +4,9 @@ from logic.board import Board
 
 
 class Tile:
+    """Luokka, joka hallitsee pelin laattojen piirtämistä ja klikkauksia.
+    """
+
     def __init__(self, board: Board, tile_size=16):
         self._sprite_sheet = pg.image.load("src/assets/tiles.png")
         self._tile_size = 16

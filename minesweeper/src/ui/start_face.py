@@ -3,6 +3,12 @@ from logic.board import Board
 
 
 class StartFace:
+    """Luokka, joka hallitsee pelin hymynaaman piirtämistä ja klikkauksia.
+
+    Hymynaama näyttää pelin tilan (voitettu, hävitty tai käynnissä) ja
+    mahdollistaa pelin uudelleenkäynnistämisen klikkauksen avulla.
+    """
+
     def __init__(
         self,
         board: Board,

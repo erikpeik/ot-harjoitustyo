@@ -7,6 +7,9 @@ from ui.button import Button
 
 
 class Menu:
+    """Pelin päävalikko, joka hallitsee pelin aloitusnäkymää.
+    """
+
     def __init__(self, screen):
         self._screen = screen
         self._frame = Frame(screen, (800, 600), (0, 0))

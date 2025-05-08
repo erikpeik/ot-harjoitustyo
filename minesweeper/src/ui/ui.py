@@ -9,6 +9,9 @@ from ui.stats import Stats
 
 
 class UI:
+    """Käyttöliittymäluokka, joka hallitsee pelin käyttöliittymää.
+    """
+
     def __init__(self):
         pg.init()
         pg.display.set_caption("Minesweeper")
