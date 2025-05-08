@@ -102,6 +102,7 @@ class Board:
         """
         row, col = piece.location
         adjacent_bombs = 0
+
         for i in range(-1, 2):
             for j in range(-1, 2):
                 if (
@@ -121,10 +122,10 @@ class Board:
         Args:
             piece (Piece): Nykyinen ruutu
         """
-        if piece.is_bomb:
+        if piece.is_bomb or piece.flagged:
             return
 
-        if self.calculate_adjacent_bombs(piece) != 0:
+        if self.calculate_adjacent_bombs(piece) > 0:
             piece.reveal()
             return
 
