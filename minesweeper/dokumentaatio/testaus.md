@@ -28,5 +28,3 @@ Sovellus on ladattu ja testattu [käyttöohjeen](./kayttoohje.md) mukaisesti sek
 ### Toiminnallisuuksien testaus
 
 Kaikki [määritellyt toiminnallisuudet](./vaatimusmaarittely.md) on testattu ja käyty läpi manuaalisesti.
-
-### Github Actions -testit

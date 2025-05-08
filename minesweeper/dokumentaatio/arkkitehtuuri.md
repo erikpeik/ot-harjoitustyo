@@ -106,3 +106,9 @@ sequenceDiagram
     UI->>GameView: draw()
 
 ```
+
+## Github Actions
+
+Projektissa käytetään *GitHub Actions* -automaatiota koodin laadun varmistamiseen. [`format.yml`](https://github.com/erikpeik/ot-harjoitustyo/blob/main/.github/workflows/format.yml) suorittaa automaattisesti *autopep8*-tarkistuksen. [`pylint.yml`](https://github.com/erikpeik/ot-harjoitustyo/blob/main/.github/workflows/pylint.yml) ajaa Pylint-analyysin koodin laadun ja virheiden tunnistamiseksi.
+
+Työnkulut on määritelty `.github/workflows`-kansiossa. Työnkulut suoritetaan automaattisesti jokaisen commitin yhteydessä ja ne voidaan tarkistaa GitHubin käyttöliittymässä [Actions-välilehdeltä](https://github.com/erikpeik/ot-harjoitustyo/actions)
