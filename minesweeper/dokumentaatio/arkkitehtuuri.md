@@ -18,7 +18,11 @@ Käyttöliittymä sisältää kolme näkymää:
 - Pelinäkymä, jossa pelataan peliä
 - Tilastot-näkymä, jossa näytetään pelin tilastot
 
-## Luokkakaavio
+Jokainen näistä toteutettu omana, erillisenä luokkana ja käyttöliittymä on totetettu Pygame-kirjastolla. Käyttöliittymä on yritetty eristää pelilogiikasta.
+
+## Sovelluslogiikka
+
+Yksinkertaistettu luokkakaavio pelilogiikasta on esitetty alla. Pelilogiikka on toteutettu luokassa `Minesweeper`, joka käyttää `Board`-luokkaa pelilaudan hallintaan ja `Piece`-luokkaa yksittäisten ruutujen hallintaan.
 
 ```mermaid
 classDiagram
@@ -76,6 +80,29 @@ sequenceDiagram
     GameView->>Tile: handle_click(pos, top_left, piece, action)
     Tile->>Piece: reveal()
     Piece-->UI:  clicked = True
+    UI->>GameView: draw()
+
+```
+
+### Käyttäjä paljastaa viimeisen tyhjän ruudun, jolloin peli päättyy voittoon
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI
+    participant GameView
+    participant Board
+    participant Tile
+    participant Piece
+    User->>UI: Clicks on tile
+    UI->>GameView: handle_click(pos, action)
+    GameView->>Tile: handle_click(pos, top_left, piece, action)
+    Tile->>Piece: reveal()
+    Piece-->UI:  clicked = True
+
+    GameView->>Board: check_win()
+    Board->>ResultRepository: save_result()
+    Board->>GameView: True
     UI->>GameView: draw()
 
 ```
