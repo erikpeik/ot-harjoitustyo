@@ -20,7 +20,8 @@ Tämän sovelluksen avulla voit pelata **miinaharavaa**. Sovellus on toteutettu 
 
 1. Siirry alikansioon `/minesweeper`
 2. Lataa riippuvuudet komennolla `poetry install`
-3. Käynnistä sovellus komennolla `poetry run invoke start`
+3. Suorita alustustoimenpiteet komennolla `poetry run invoke build`
+4. Käynnistä sovellus komennolla `poetry run invoke start`
 
 ## Komentorivitoiminnot
 
